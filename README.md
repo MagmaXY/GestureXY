@@ -14,12 +14,12 @@
 * Модуль заряда Power Bank для Li-ion аккумуляторов (улучшенный TP4056) c преобразователем 5V (MT3608) и выходом USB-A TPC-5V-2A
 * Модульный вибропривод
 * Кнопка
-### Корпус
-* Пластик; [3D модели](https://github.com/MagmaXY/GestureXY/tree/main/3d%20%20models)
+### [Корпус](https://github.com/MagmaXY/GestureXY/tree/main/3d%20%20models)
+* Пластик
 * Провода
 * Резинки
 * Термоклей
-### Функционал
+### [Фунционал](https://github.com/MagmaXY/GestureXY/tree/main/firmware)
 * 15 линейно-осевых жестов
 * Настройка яркости дисплея и вибрации
 * Вкл/Выкл управления жестами
@@ -28,4 +28,4 @@
 * Управление кнопкой: зажать для следующей сети при подключении; кликнуть для отображения локальной сети; отжать для перезагрузки устройства
 * Веб приложение:
 
-![image](https://github.com/user-attachments/assets/f8ae2ce2-1946-45fa-9480-74e9c1cea22d)
+![webface](https://github.com/user-attachments/assets/f8ae2ce2-1946-45fa-9480-74e9c1cea22d)
