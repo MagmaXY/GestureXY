@@ -22,10 +22,8 @@ public:
     _num = 0;
   }
   void flag(bool flg = true) {
-    if (flg) {
-      _flg = true;
-      _flg1 = false;
-    } else off();
+    _flg = flg;
+    if (!flg) off();
   }
   void tick() {
     if (_flg and _num > 0 and millis() - _tmr >= _prd) {
@@ -37,7 +35,7 @@ public:
       }
       _tmr = millis();
     }
-    if (_flg1 and _num > 0 and millis() - _tmr1 >= _prd1) {
+    if (_flg1 and millis() - _tmr1 >= _prd1) {
       _flg1 = false;
       digitalWrite(_pin, HIGH);
       _tmr = millis();
