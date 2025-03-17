@@ -43,6 +43,7 @@ public:
     if (_flg1 and _num > 0 and millis() - _tmr1 >= _prd1) {
       _flg1 = false;
       digitalWrite(_pin, HIGH);
+      _tmr = millis();
     }
   }
 private:
