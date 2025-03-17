@@ -1,6 +1,6 @@
 void gestTick() {
   if (g.gest == "") return;
-
+  
   if (gData.name == 0 and gData.scene == 0 and g.gest == "Up-Down") {
 
     db[kk::state] = !db[kk::state];
@@ -85,4 +85,5 @@ void gestTick() {
     sendScene();
     
   }
+  gData.timer = millis();
 }
