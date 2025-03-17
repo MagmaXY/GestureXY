@@ -9,10 +9,12 @@ public:
     digitalWrite(_pin, LOW);
   }
   void on(uint32_t prd = 500, byte num = 1) {
-    if (!_flg) return;
+    if (!_flg and !_flg1) return;
+    off();
     _prd = prd;
     _num = num;
     digitalWrite(_pin, HIGH);
+    _flg = true;
     _tmr = millis();
   }
   void off() {
