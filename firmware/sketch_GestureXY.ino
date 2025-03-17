@@ -120,7 +120,7 @@ void loop() {
   mqttTick();
   sett.tick();
   g.tick();
-  gestSwitch();
+  gestTick();
   vibro.tick();
 }
 
