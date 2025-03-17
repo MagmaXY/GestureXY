@@ -131,7 +131,7 @@ void loop() {
 
 void btnTick() {
   btn.tick();
-  if (btn.releaseHold()) ESP.restart();
+  if (btn.hold()) ESP.restart();
   if (btn.click(1)) {
     setupGraph();
     oled.print(WiFi.localIP());
