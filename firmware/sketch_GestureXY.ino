@@ -45,6 +45,7 @@ GestureXY g(100);
 struct gestureXY {
   byte name = 0;
   byte scene = 0;
+  uint32_t timer = 0;
 } gData;
 
 void setup() {
@@ -122,6 +123,7 @@ void loop() {
   sett.tick();
   g.tick();
   gestTick();
+  oledTick();
   vibro.tick();
 }
 
