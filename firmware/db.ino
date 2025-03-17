@@ -86,7 +86,10 @@ void build(sets::Builder& b) {
         Serial.println(b.build.value.toInt() ? "Active" : "Inactive");
         oled.clear();
         vibro.on(500);
-        if (b.build.value.toInt()) cursorGraph();
+        if (b.build.value.toInt()) {
+          cursorGraph();
+          gData.timer = millis();
+        }
         break;
       case kk::names:
         if (db[kk::state] and gData.scene == 0) cursorGraph();
@@ -104,7 +107,7 @@ void build(sets::Builder& b) {
         g.setTurn(b.build.value);
         break;
       case kk::sep:
-        if (db[kk::state]) cursorGraph();
+        if (db[kk::state]) { cursorGraph();
         break;
       case kk::quit:
         g.setQuit(b.build.value);
