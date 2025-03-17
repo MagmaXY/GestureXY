@@ -33,6 +33,7 @@ public:
   }
   void tick() {
     if (_flg and _num > 0 and millis() - _tmr >= _prd) {
+      _flg = false;
       _num--;
       digitalWrite(_pin, LOW);
       if (_num > 0) {
