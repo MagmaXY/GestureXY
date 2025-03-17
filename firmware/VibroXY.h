@@ -18,12 +18,17 @@ public:
   void off() {
     digitalWrite(_pin, LOW);
     _tmr = 0;
+    _tmr1 = 0;
+    _flg = 0;
+    _flg1 = 0;
     _prd = 0;
+    _prd1 = 0;
     _num = 0;
   }
   void flag(bool flg = true) {
     _flg = flg;
     _flg1 = !flg;
+    if (!flg) off();
   }
   void tick() {
     if (_flg and _num > 0 and millis() - _tmr >= _prd) {
