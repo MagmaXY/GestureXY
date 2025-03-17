@@ -19,10 +19,10 @@ DB_KEYS(
   port,
   connect,
   names,
-  scenes, 
-  sep, 
-  header, 
-  ons, 
+  scenes,
+  sep,
+  header,
+  ons,
   searchs,
   serial,
   brightness,
@@ -140,6 +140,8 @@ void btnTick() {
 
 void oledTick() {
   if (!db[kk::ons]) return;
-  if (millis() - gData.timer >= (uint32_t) db[kk::ons])
+  if (db[kk::state] and millis() - gData.timer >= (uint32_t)db[kk::ons]) {
     db[kk::state] = false;
+    oled.clear();
+  }
 }
