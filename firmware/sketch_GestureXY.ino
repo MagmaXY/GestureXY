@@ -140,6 +140,6 @@ void btnTick() {
 
 void oledTick() {
   if (!db[kk::ons]) return;
-  if (millis() - gData.timer >= db[kk::ons])
+  if (millis() - gData.timer >= (uint32_t) db[kk::ons])
     db[kk::state] = false;
 }
