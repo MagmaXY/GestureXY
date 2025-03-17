@@ -5,6 +5,7 @@ public:
   VibroXY(byte pin, uint32_t prd = 50) {
     _pin = pin;
     _prd1 = prd;
+    _flg = true;
     pinMode(_pin, OUTPUT);
     off();
   }
