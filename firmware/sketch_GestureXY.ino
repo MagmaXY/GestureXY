@@ -79,12 +79,12 @@ void setup() {
   WiFi.begin(db[kk::ssid], db[kk::pass]);
 
   bool flag = false;
-  uint32_t timer = 0;
+  byte timer = 0;
 
   while (WiFi.status() != WL_CONNECTED) {
-    if (btn.read()) timer = 15000;
+    if (btn.read()) timer = 15;
 
-    if (timer >= 15000) {
+    if (timer >= 15) {
       timer = 0;
       if (!flag) {
         flag = true;
@@ -99,7 +99,7 @@ void setup() {
     }
     Serial.print(".");
     oled.print(".");
-    timer += 1000;
+    timer++;
     delay(1000);
   }
   Serial.println("Connected");
