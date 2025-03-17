@@ -1,4 +1,4 @@
-void gestSwitch() {
+void gestTick() {
   if (g.gest == "") return;
 
   if (gData.name == 0 and gData.scene == 0 and g.gest == "Up-Down") {
