@@ -12,14 +12,11 @@ public:
     _prd = prd;
     _num = num;
     _flg1 = false;
-    _tmr1 = 0;
     digitalWrite(_pin, HIGH);
     _tmr = millis();
   }
   void off() {
     digitalWrite(_pin, LOW);
-    _tmr = 0;
-    _tmr1 = 0;
     _flg1 = false;
     _prd = 0;
     _num = 0;
