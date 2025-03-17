@@ -14,6 +14,7 @@ void db_init() {
   db.init(kk::sep, ',');
   db.init(kk::serial, 115200);
   db.init(kk::searchs, 2000);
+  db.init(kk::ons, 5000);
   db.init(kk::brightness, 127);
   db.init(kk::turn, 90);
   db.init(kk::vibration, true);
@@ -30,6 +31,7 @@ void build(sets::Builder& b) {
     b.Slider(kk::quit, "⏲ Ожидание датчика", 100, 1000, 100);
     b.Slider(kk::turn, "🔄 Поворот датчика", 0, 270, 90);
     b.Slider(kk::brightness, "🔆 Яркость дисплея", 0, 255, 1);
+    b.Slider(kk::ons, "🔅 Активное управление", 2000, 10000, 1000);
     b.Switch(kk::vibration, "📳 Вибрация");
     b.Switch(kk::state, "📴 Управление жестами");
   }
