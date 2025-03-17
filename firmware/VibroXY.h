@@ -6,15 +6,16 @@ public:
     _pin = pin;
     _prd1 = prd;
     pinMode(_pin, OUTPUT);
-    digitalWrite(_pin, LOW);
+    off();
   }
   void on(uint32_t prd = 500, byte num = 1) {
-    if (!_flg and !_flg1) return;
     off();
     _prd = prd;
     _num = num;
-    digitalWrite(_pin, HIGH);
     _flg = true;
+    _flg1 = false;
+    _tmr1 = 0;
+    digitalWrite(_pin, HIGH);
     _tmr = millis();
   }
   void off() {
@@ -24,7 +25,6 @@ public:
     _flg = 0;
     _flg1 = 0;
     _prd = 0;
-    _prd1 = 0;
     _num = 0;
   }
   void flag(bool flg = true) {
