@@ -9,7 +9,6 @@ public:
     off();
   }
   void on(uint32_t prd = 500, byte num = 1) {
-    off();
     _prd = prd;
     _num = num;
     _flg = true;
