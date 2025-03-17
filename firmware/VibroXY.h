@@ -22,8 +22,8 @@ public:
     digitalWrite(_pin, LOW);
     _tmr = 0;
     _tmr1 = 0;
-    _flg = 0;
-    _flg1 = 0;
+    _flg = false;
+    _flg1 = false;
     _prd = 0;
     _num = 0;
   }
