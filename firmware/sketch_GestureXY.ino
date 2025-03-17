@@ -71,7 +71,8 @@ void setup() {
     Serial.print("INIT ERROR,CODE:");
     Serial.println(error);
     oled.print("Error paj7620");
-    ESP.restart();
+    delay(1000);
+    setupGraph();
   }
 
   Serial.println("WiFi");
