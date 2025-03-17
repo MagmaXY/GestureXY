@@ -11,7 +11,6 @@ public:
   void on(uint32_t prd = 500, byte num = 1) {
     _prd = prd;
     _num = num;
-    _flg = true;
     _flg1 = false;
     _tmr1 = 0;
     digitalWrite(_pin, HIGH);
@@ -21,7 +20,6 @@ public:
     digitalWrite(_pin, LOW);
     _tmr = 0;
     _tmr1 = 0;
-    _flg = false;
     _flg1 = false;
     _prd = 0;
     _num = 0;
