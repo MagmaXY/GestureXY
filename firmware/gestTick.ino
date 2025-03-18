@@ -6,7 +6,6 @@ void gestTick() {
     db[kk::state] = !db[kk::state];
     Serial.println(db[kk::state] ? "Active" : "Inactive");
     oled.clear();
-    vibro.on(500);
 
   }
 
@@ -51,7 +50,8 @@ void gestTick() {
         oled.setContrast(db[kk::brightness]);
 
       } else if (g.gest == "Up-Down") {
-
+        
+        vibro.on(500);
         cursorGraph();
 
       } else if (g.gest == "Down-Up") {
