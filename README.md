@@ -1,6 +1,6 @@
 ![preview](https://github.com/user-attachments/assets/b0beff92-4d65-4c91-98f8-278185b91c6d)
 
-# 🤟 GestureXY
+# 🤟 [GestureXY](https://github.com/MagmaXY/GestureXY/blob/main/preview.jpg)
 Носимое устройство - контроллер жестами и mqtt запросами на базе ESP8266.
 
 ## 🗒 [Описание проекта](https://github.com/MagmaXY/GestureXY/blob/main/README.md)
@@ -33,7 +33,7 @@
   
 ![webface](https://github.com/user-attachments/assets/fcbce700-9852-4445-b62e-60e84ae0da6a)
 
-### 🛐 Зависимости:
+### 🛐 [Зависимости:](https://www.arduino.cc/en/software)
 * [PubSubClient](https://github.com/knolleary/pubsubclient) 
 * [Settings](https://github.com/GyverLibs/Settings) 
 * [GyverDB](https://github.com/GyverLibs/GyverDB) 
