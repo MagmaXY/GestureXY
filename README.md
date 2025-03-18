@@ -29,7 +29,7 @@
 * Переключение сценариев и их отправка всем устройствам
 * Управление кнопкой: зажать для следующей сети при подключении; кликнуть для отображения локальной сети; зажать для перезагрузки устройства
 * Автоотключение через заданное время
-* [Веб приложение:](https://github.com/MagmaXY/GestureXY/blob/main/preview.jpg)
+* [Веб приложение:](https://github.com/MagmaXY/GestureXY/blob/main/webface.png)
   
 ![webface](https://github.com/user-attachments/assets/fcbce700-9852-4445-b62e-60e84ae0da6a)
 
