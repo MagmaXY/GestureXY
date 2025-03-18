@@ -116,6 +116,7 @@ void setup() {
   setupGraph();
   oled.print(WiFi.localIP());
   vibro.on(1000);
+  gData.timer = millis();
 }
 
 void loop() {
