@@ -135,6 +135,7 @@ void btnTick() {
   if (db[kk::state] and btn.click()) {
     setupGraph();
     oled.print(WiFi.localIP());
+    gData.timer = millis();
   }
 }
 
