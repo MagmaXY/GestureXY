@@ -22,9 +22,11 @@ void callback(char* topic, byte* payload, uint16_t len) {
   if (!str.startsWith(db[kk::header])) return;
   Serial.println(str);
   String data = str.substring(db[kk::header].length());
+  db[kk::state] = true;
   cursorGraph();
   oled.print(data);
   vibro.on(500);
+  gData.timer = millis();
 }
 
 void sendGest() {
