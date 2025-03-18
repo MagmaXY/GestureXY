@@ -141,9 +141,9 @@ void btnTick() {
 
 void oledTick() {
   if (!db[kk::ons]) return;
-  if (db[kk::state] and millis() - gData.timer >= (uint32_t)db[kk::ons]) {
-    db[kk::state] = false;
+  if (millis() - gData.timer >= (uint32_t)db[kk::ons]) {
+    if (db[kk::state]) Serial.println("Inactive");
     oled.clear();
-    Serial.println("Inactive");
+    db[kk::state] = false;
   }
 }
