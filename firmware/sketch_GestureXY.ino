@@ -132,7 +132,7 @@ void loop() {
 void btnTick() {
   btn.tick();
   if (btn.hold()) ESP.restart();
-  if (btn.click(1)) {
+  if (db[kk::state] and btn.click()) {
     setupGraph();
     oled.print(WiFi.localIP());
   }
