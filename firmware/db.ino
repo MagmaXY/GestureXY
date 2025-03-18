@@ -78,6 +78,7 @@ void build(sets::Builder& b) {
 
 
   if (b.build.isAction()) {
+    gData.timer = millis();
     switch (b.build.id) {
       case kk::brightness:
         oled.setContrast(b.build.value);
@@ -86,10 +87,7 @@ void build(sets::Builder& b) {
         Serial.println(b.build.value.toInt() ? "Active" : "Inactive");
         oled.clear();
         vibro.on(500);
-        if (b.build.value.toInt()) {
-          cursorGraph();
-          gData.timer = millis();
-        }
+        if (b.build.value.toInt()) cursorGraph();
         break;
       case kk::names:
         if (db[kk::state] and gData.scene == 0) cursorGraph();
@@ -107,7 +105,7 @@ void build(sets::Builder& b) {
         g.setTurn(b.build.value);
         break;
       case kk::sep:
-        if (db[kk::state]) { cursorGraph();
+        if (db[kk::state]) cursorGraph();
         break;
       case kk::quit:
         g.setQuit(b.build.value);
