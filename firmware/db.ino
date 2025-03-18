@@ -78,7 +78,6 @@ void build(sets::Builder& b) {
 
 
   if (b.build.isAction()) {
-    gData.timer = millis();
     switch (b.build.id) {
       case kk::brightness:
         oled.setContrast(b.build.value);
@@ -114,5 +113,6 @@ void build(sets::Builder& b) {
         g.setReaction(b.build.value);
         break;
     }
+    gData.timer = millis();
   }
 }
