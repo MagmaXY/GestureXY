@@ -144,5 +144,6 @@ void oledTick() {
   if (db[kk::state] and millis() - gData.timer >= (uint32_t)db[kk::ons]) {
     db[kk::state] = false;
     oled.clear();
+    Serial.println("Inactive");
   }
 }
