@@ -38,17 +38,11 @@ void loop() {
     } else if (str == "Up") {
       Consumer.write(MEDIA_PAUSE);
     } else if (str == "Up-Down") {
-      BootKeyboard.press(KEY_SPACE);
+      BootKeyboard.press(KEY_RIGHT_ARROW);
       delay(50);
       BootKeyboard.releaseAll();
     } else if (str == "Down-Up") {
-      BootKeyboard.press(KEY_LEFT_GUI);
-      delay(500);
-      BootKeyboard.press('r');
-      delay(100);
-      BootKeyboard.releaseAll();
-      BootKeyboard.print("https://github.com/MagmaXY/GestureXY/");
-      BootKeyboard.press(KEY_RETURN);
+      BootKeyboard.press(KEY_LEFT_ARROW);
       delay(50);
       BootKeyboard.releaseAll();
     } else if (str == "Right") {
