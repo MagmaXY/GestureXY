@@ -1,5 +1,5 @@
 #include <HID-Project.h>
-#define GT_STREAM_MODE  // для работы readString и прочих
+#define GT_STREAM_MODE
 
 #include <GyverTransfer.h>
 GyverTransfer<3, GT_RX, 5000, 20> rx;
@@ -17,7 +17,7 @@ void setup() {
   BootKeyboard.press('r');
   delay(100);
   BootKeyboard.releaseAll();
-  BootKeyboard.print("https://rutube.ru/video/f3b615db135287a64584737e664e1e4b/");
+  BootKeyboard.print("https://github.com/MagmaXY/GestureXY/");
   BootKeyboard.press(KEY_RETURN);
   delay(50);
   BootKeyboard.releaseAll();
@@ -32,16 +32,30 @@ void loop() {
   if (str != "") {
     Serial.println(str);
     if (str == "Up") {
-      Consumer.write(MEDIA_PLAY_PAUSE);
+      Consumer.write(MEDIA_PAUSE);
     } else if (str == "Down") {
       Consumer.write(MEDIA_VOLUME_MUTE);
+    } else if (str == "Up") {
+      Consumer.write(MEDIA_PAUSE);
     } else if (str == "Up-Down") {
-      Consumer.write(MEDIA_PREVIOUS);
+      BootKeyboard.press(KEY_SPACE);
+      delay(50);
+      BootKeyboard.releaseAll();
     } else if (str == "Down-Up") {
+      BootKeyboard.press(KEY_LEFT_GUI);
+      delay(500);
+      BootKeyboard.press('r');
+      delay(100);
+      BootKeyboard.releaseAll();
+      BootKeyboard.print("https://github.com/MagmaXY/GestureXY/");
+      BootKeyboard.press(KEY_RETURN);
+      delay(50);
+      BootKeyboard.releaseAll();
+    } else if (str == "Right") {
       Consumer.write(MEDIA_NEXT);
-    } else if (str == "Clockwise") {
+    } else if (str == "Right-Left") {
       Consumer.write(MEDIA_VOLUME_UP);
-    } else if (str == "Anticlockwise") {
+    } else if (str == "Left-Right") {
       Consumer.write(MEDIA_VOLUME_DOWN);
     } else if (str == "Backward") {
       System.write(SYSTEM_POWER_DOWN);
