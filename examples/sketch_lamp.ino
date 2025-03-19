@@ -196,6 +196,32 @@ void callback(char* topic, byte* payload, uint16_t len) {
     }
     FastLED.show();
     sendPacket(msg);
+  } else if (readData == "Away") {
+    gData.state = false;
+    for (int i = 0; i < LED_NUM; i++) {
+      leds[i].setRGB(0, 0, 0);
+    }
+    FastLED.show();
+  } else if (readData == "Comeback") {
+    gData.state = true;
+    if (gData.scenes[gData.scene] == "None") {
+      for (int i = 0; i < LED_NUM; i++) {
+        leds[i].setRGB(gData.colors[gData.color][0], gData.colors[gData.color][1], gData.colors[gData.color][2]);
+      }
+    } else if (gData.scenes[gData.scene] == "Cold") {
+      for (int i = 0; i < LED_NUM; i++) {
+        leds[i].setRGB(0, 213, 255);
+      }
+    } else if (gData.scenes[gData.scene] == "Normal") {
+      for (int i = 0; i < LED_NUM; i++) {
+        leds[i].setRGB(255, 255, 255);
+      }
+    } else if (gData.scenes[gData.scene] == "Warm") {
+      for (int i = 0; i < LED_NUM; i++) {
+        leds[i].setRGB(255, 200, 0);
+      }
+    }
+    FastLED.show();
   }
 }
 
