@@ -7,12 +7,14 @@ void gestTick() {
     Serial.println("Active");
     vibro.on(500);
     cursorGraph();
+    gData.timer = millis();
     return;
 
   } else if (db[kk::state] and gData.name == 0 and gData.scene == 0 and g.gest == "Up-Down") {
     db[kk::state] = false;
     Serial.println("Inactive");
     oled.clear();
+    gData.timer = millis();
     return;
   }
 
