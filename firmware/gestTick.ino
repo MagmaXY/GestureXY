@@ -1,12 +1,17 @@
 void gestTick() {
   if (g.gest == "") return;
-  
-  if (gData.name == 0 and gData.scene == 0 and g.gest == "Up-Down") {
 
-    db[kk::state] = !db[kk::state];
-    Serial.println(db[kk::state] ? "Active" : "Inactive");
+  if (!db[kk::state] and g.gest == "Up-Down") {
+
+    db[kk::state] = true;
+    Serial.println("Active");
+    vibro.on(500);
+    cursorGraph();
+
+  } else if (db[kk::state] and gData.name == 0 and gData.scene == 0 and g.gest == "Up-Down") {
+    db[kk::state] = false;
+    Serial.println("Inactive");
     oled.clear();
-
   }
 
   if (!db[kk::state]) return;
@@ -49,23 +54,16 @@ void gestTick() {
         cursorGraph();
         oled.setContrast(db[kk::brightness]);
 
-      } else if (g.gest == "Up-Down") {
-        
-        vibro.on(500);
-        cursorGraph();
-
       } else if (g.gest == "Down-Up") {
 
         db[kk::vibration] = !db[kk::vibration];
         cursorGraph();
-
       }
     } else {
 
       cursorGraph();
       oled.print(g.gest);
       sendGest();
-
     }
   } else if (g.gest == "Right" or g.gest == "Left") {
 
@@ -83,7 +81,6 @@ void gestTick() {
     Serial.println(getScene());
     cursorGraph();
     sendScene();
-    
   }
   gData.timer = millis();
 }
