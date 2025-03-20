@@ -31,9 +31,17 @@ DB_KEYS(
   power,
   state,
   reaction,
-  quit);
+  quit,
+  stateGest,
+  vibrationGest,
+  plusBrightnessGest,
+  minusBrightnessGest,
+  nextNameGest,
+  previousNameGest,
+  nextSceneGest,
+  previousSceneGest,
+  sceneGest);
 ;
-
 WiFiClient espClient;
 PubSubClient mqtt(espClient);
 GyverDBFile db(&LittleFS, "🤘 GestureXY.db");
