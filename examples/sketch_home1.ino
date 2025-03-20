@@ -7,7 +7,7 @@ GyverTransfer<3, GT_RX, 5000, 20> rx;
 void setup() {
   Serial.begin(115200);
   Serial.setTimeout(50);
-  attachInterrupt(0, isr, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(3), isr, CHANGE);
   rx.setTimeout(50);
   Consumer.begin();
   BootKeyboard.begin();
@@ -22,7 +22,7 @@ void setup() {
   delay(50);
   BootKeyboard.releaseAll();
 }
-String str;
+String str = "";
 
 void isr() {
   rx.tickISR();
@@ -38,13 +38,21 @@ void loop() {
     } else if (str == "Up") {
       Consumer.write(MEDIA_PAUSE);
     } else if (str == "Up-Down") {
-      BootKeyboard.press(KEY_RIGHT_ARROW);
-      delay(50);
+      BootKeyboard.press(KEY_BACKSPACE);
+      delay(200);
       BootKeyboard.releaseAll();
     } else if (str == "Down-Up") {
-      BootKeyboard.press(KEY_LEFT_ARROW);
+      BootKeyboard.press(KEY_LEFT_GUI);
+      delay(500);
+      BootKeyboard.press('r');
+      delay(100);
+      BootKeyboard.releaseAll();
+      BootKeyboard.print("https://github.com/MagmaXY/GestureXY/");
+      BootKeyboard.press(KEY_RETURN);
       delay(50);
       BootKeyboard.releaseAll();
+    } else if (str == "Left") {
+      Consumer.write(MEDIA_PREVIOUS	);
     } else if (str == "Right") {
       Consumer.write(MEDIA_NEXT);
     } else if (str == "Right-Left") {
