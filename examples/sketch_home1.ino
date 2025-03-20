@@ -65,6 +65,16 @@ void loop() {
       System.write(SYSTEM_SLEEP);
     } else if (str == "Comeback") {
       System.write(SYSTEM_WAKE_UP);
+    } else if (str.startsWith("http")) {
+      BootKeyboard.press(KEY_LEFT_GUI);
+      delay(500);
+      BootKeyboard.press('r');
+      delay(100);
+      BootKeyboard.releaseAll();
+      BootKeyboard.print(str);
+      BootKeyboard.press(KEY_RETURN);
+      delay(50);
+      BootKeyboard.releaseAll();
     }
     str = "";
   }
