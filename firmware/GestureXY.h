@@ -3,8 +3,8 @@
 
 class GestureXY {
 public:
-  GestureXY(uint32_t prd = 100) {
-    _prd = prd;
+  GestureXY() {
+    _prd = 100;
     _flg = true;
     _flg1 = false;
   }
@@ -173,6 +173,7 @@ private:
   bool _flg1;
   uint32_t _quit;
   uint32_t _react;
+  
   String _gest;
   void _exchange() {
     if (_gest == "") return;
