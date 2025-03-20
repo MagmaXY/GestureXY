@@ -18,6 +18,7 @@ void db_init() {
   db.init(kk::brightness, 127);
   db.init(kk::turn, 90);
   db.init(kk::vibration, true);
+  db.init(kk::power, 255);
   db.init(kk::state, false);
   db.init(kk::reaction, 400);
   db.init(kk::quit, 800);
@@ -26,14 +27,28 @@ void db_init() {
 
 void build(sets::Builder& b) {
   {
-    sets::Group g(b, "🛠 Устройство");
-    b.Slider(kk::reaction, "⏲ Реакция датчика", 100, 1000, 100);
-    b.Slider(kk::quit, "⏲ Ожидание датчика", 100, 1000, 100);
-    b.Slider(kk::turn, "🔄 Поворот датчика", 0, 270, 90);
+    sets::Group g(b, "🤖 Датчик");
+    b.Slider(kk::reaction, "⏲ Реакция", 100, 1000, 100);
+    b.Slider(kk::quit, "⏲ Ожидание", 100, 1000, 100);
+    b.Slider(kk::turn, "🔄 Поворот", 0, 270, 90);
+  }
+  {
+    sets::Group g(b, "🖼️ Дисплей");
     b.Slider(kk::brightness, "🔆 Яркость дисплея", 0, 255, 1);
     b.Slider(kk::ons, "🔅 Активное управление", 0, 15000, 1000);
-    b.Switch(kk::vibration, "📳 Вибрация");
-    b.Switch(kk::state, "📴 Управление жестами");
+    b.Switch(kk::state, "📴 Управление");
+    if (b.Button("fill"_h, "🪣 Залить")) oled.rect(0, 0, 128, 31, OLED_FILL);
+  }
+  {
+    sets::Group g(b, "📳 Вибрация");
+    b.Switch(kk::vibration, "🚩 Состояние");
+    b.Slider(kk::power, "📲 Сила", 0, 255, 1);
+    b.Slider(kk::searchs, "🕑 Поиск", 500, 15000, 500);
+    if (b.Button("search"_h, "🔎 Поиск")) vibro.on(db[kk::searchs]);
+  }
+    {
+    sets::Group g(b, "👨‍💻 Serial");
+    b.Input(kk::serial, "🕓 Бод");
   }
   {
     sets::Group g(b, "⚙ MQTT");
@@ -52,20 +67,6 @@ void build(sets::Builder& b) {
     b.Input(kk::ssid1, "🌐 reSSID");
     b.Pass(kk::pass1, "🔑 rePass");
   }
-  {
-    sets::Group g(b, "👨‍💻 Serial");
-    b.Input(kk::serial, "🕓 Бод");
-  }
-  {
-    sets::Group g(b, "🔍 Поиск");
-    b.Slider(kk::searchs, "🕑 Долгота", 500, 15000, 500);
-    if (b.Button("search"_h, "🔎 Поиск")) vibro.on(db[kk::searchs]);
-  }
-
-  {
-    if (b.Button("fill"_h, "🪣 Залить дисплей")) oled.rect(0, 0, 128, 31, OLED_FILL);
-  }
-
   {
     if (b.Button("setup"_h, "🔂 Перезагрузить")) {
       ESP.restart();
@@ -111,6 +112,9 @@ void build(sets::Builder& b) {
         break;
       case kk::reaction:
         g.setReaction(b.build.value);
+        break;
+      case kk::power:
+        vibro.setPower(b.build.value);
         break;
     }
     gData.timer = millis();
