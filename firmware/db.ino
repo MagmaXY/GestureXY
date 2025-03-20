@@ -23,6 +23,15 @@ void db_init() {
   db.init(kk::reaction, 400);
   db.init(kk::quit, 800);
   db.init(kk::connect, false);
+  db.init(kk::stateGest, "Up-Down");
+  db.init(kk::vibrationGest, "Down-Up");
+  db.init(kk::plusBrightnessGest, "Up");
+  db.init(kk::minusBrightnessGest, "Down");
+  db.init(kk::nextNameGest, "Right-Left");
+  db.init(kk::previousNameGest, "Left-Right");
+  db.init(kk::nextSceneGest, "Right");
+  db.init(kk::previousSceneGest, "Left");
+  db.init(kk::sceneGest, "Up");
 }
 
 void build(sets::Builder& b) {
@@ -34,7 +43,7 @@ void build(sets::Builder& b) {
   }
   {
     sets::Group g(b, "🖼️ Дисплей");
-    b.Slider(kk::brightness, "🔆 Яркость дисплея", 0, 255, 1);
+    b.Slider(kk::brightness, "🔆 Яркость", 0, 255, 1);
     b.Slider(kk::ons, "🔅 Активное управление", 0, 15000, 1000);
     b.Switch(kk::state, "📴 Управление");
     if (b.Button("fill"_h, "🪣 Залить")) oled.rect(0, 0, 128, 31, OLED_FILL);
@@ -46,7 +55,19 @@ void build(sets::Builder& b) {
     b.Slider(kk::searchs, "🕑 Поиск", 500, 15000, 500);
     if (b.Button("search"_h, "🔎 Поиск")) vibro.on(db[kk::searchs]);
   }
-    {
+  {
+    sets::Group g(b, "👋 Жесты");
+    b.Input(kk::stateGest, "📴 Управление");
+    b.Input(kk::vibrationGest, "🚩 Вибрация");
+    b.Input(kk::plusBrightnessGest, "🔆 Яркость");
+    b.Input(kk::minusBrightnessGest, "🔅 Яркость");
+    b.Input(kk::nextNameGest, "🔜 Устройство");
+    b.Input(kk::previousNameGest, "🔚 Устройство");
+    b.Input(kk::nextSceneGest, "🔜 Сценарий");
+    b.Input(kk::previousSceneGest, "🔚 Сценарий");
+    b.Input(kk::sceneGest, "📨 Сценарий");
+  }
+  {
     sets::Group g(b, "👨‍💻 Serial");
     b.Input(kk::serial, "🕓 Бод");
   }
