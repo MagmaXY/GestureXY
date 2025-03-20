@@ -52,7 +52,7 @@ void loop() {
       delay(50);
       BootKeyboard.releaseAll();
     } else if (str == "Left") {
-      Consumer.write(MEDIA_PREVIOUS	);
+      Consumer.write(MEDIA_PREVIOUS);
     } else if (str == "Right") {
       Consumer.write(MEDIA_NEXT);
     } else if (str == "Right-Left") {
