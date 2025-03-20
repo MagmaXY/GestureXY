@@ -28,6 +28,7 @@ DB_KEYS(
   brightness,
   turn,
   vibration,
+  power,
   state,
   reaction,
   quit);
@@ -39,8 +40,8 @@ GyverDBFile db(&LittleFS, "🤘 GestureXY.db");
 SettingsGyver sett("🤟 GestureXY", &db);
 GyverOLED<SSD1306_128x32, OLED_NO_BUFFER> oled;
 Button btn(D5);
-VibroXY vibro(D6, 50);
-GestureXY g(100);
+VibroXY vibro(D6);
+GestureXY g;
 
 struct gestureXY {
   byte name = 0;
@@ -115,6 +116,7 @@ void setup() {
   Serial.println(WiFi.localIP());
   setupGraph();
   oled.print(WiFi.localIP());
+  vibro.setPower(db[kk::power]);
   vibro.on(1000);
   gData.timer = millis();
 }
