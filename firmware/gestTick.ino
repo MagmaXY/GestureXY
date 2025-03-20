@@ -1,7 +1,8 @@
 void gestTick() {
+
   if (g.gest == "") return;
 
-  if (!db[kk::state] and g.gest == "Up-Down") {
+  if (!db[kk::state] and g.gest == db[kk::stateGest]) {
 
     db[kk::state] = true;
     Serial.println("Active");
@@ -10,7 +11,7 @@ void gestTick() {
     gData.timer = millis();
     return;
 
-  } else if (db[kk::state] and gData.name == 0 and gData.scene == 0 and g.gest == "Up-Down") {
+  } else if (db[kk::state] and gData.name == 0 and gData.scene == 0 and g.gest == db[kk::stateGest]) {
     db[kk::state] = false;
     Serial.println("Inactive");
     oled.clear();
@@ -22,9 +23,9 @@ void gestTick() {
 
   if (gData.scene == 0) {
 
-    if (g.gest == "Right-Left" or g.gest == "Left-Right") {
+    if (g.gest == db[kk::nextNameGest] or g.gest == db[kk::previousNameGest]) {
 
-      int8_t move = g.gest == "Right-Left" ? 1 : -1;
+      int8_t move = g.gest == db[kk::nextNameGest] ? 1 : -1;
       if (gData.name + move < 0) {
         gData.name = getNamesCount() - 1;
       } else {
@@ -34,9 +35,9 @@ void gestTick() {
 
     } else if (gData.name == 0) {
 
-      if (g.gest == "Right" or g.gest == "Left") {
+      if (g.gest == db[kk::nextSceneGest] or g.gest == db[kk::previousSceneGest]) {
 
-        int8_t move = g.gest == "Right" ? 1 : -1;
+        int8_t move = g.gest == db[kk::nextSceneGest] ? 1 : -1;
         if (gData.scene + move < 0) {
           gData.scene = getScenesCount() - 1;
         } else {
@@ -45,20 +46,20 @@ void gestTick() {
         Serial.println(getScene());
         cursorGraph();
 
-      } else if (g.gest == "Up") {
+      } else if (g.gest == db[kk::plusBrightnessGest]) {
 
         db[kk::brightness] = (int(db[kk::brightness]) + 32) % 256;
         cursorGraph();
         oled.setContrast(db[kk::brightness]);
 
-      } else if (g.gest == "Down") {
+      } else if (g.gest == db[kk::minusBrightnessGest]) {
 
         db[kk::brightness] -= 32;
         if (db[kk::brightness] < 0) db[kk::brightness] = 255;
         cursorGraph();
         oled.setContrast(db[kk::brightness]);
 
-      } else if (g.gest == "Down-Up") {
+      } else if (g.gest == db[kk::vibrationGest]) {
 
         db[kk::vibration] = !db[kk::vibration];
         cursorGraph();
@@ -69,9 +70,9 @@ void gestTick() {
       oled.print(g.gest);
       sendGest();
     }
-  } else if (g.gest == "Right" or g.gest == "Left") {
+  } else if (g.gest == db[kk::nextSceneGest] or g.gest == db[kk::previousSceneGest]) {
 
-    int8_t move = g.gest == "Right" ? 1 : -1;
+    int8_t move = g.gest == db[kk::nextSceneGest] ? 1 : -1;
     if (gData.scene + move < 0) {
       gData.scene = getScenesCount() - 1;
     } else {
@@ -80,7 +81,7 @@ void gestTick() {
     Serial.println(getScene());
     cursorGraph();
 
-  } else if (g.gest == "Up") {
+  } else if (g.gest == db[kk::sceneGest]) {
 
     Serial.println(getScene());
     cursorGraph();
