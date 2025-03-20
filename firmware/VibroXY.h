@@ -2,18 +2,25 @@
 
 class VibroXY {
 public:
-  VibroXY(byte pin, uint32_t prd = 50) {
+  VibroXY(byte pin) {
     _pin = pin;
-    _prd1 = prd;
     _flg = true;
+    _prd1 = 50;
+    _pwm = 255;
     pinMode(_pin, OUTPUT);
     off();
+  }
+  void setPeriod(uint32_t prd = 50) {
+    _prd1 = prd;
+  }
+  void setPower(byte pwm = 255) {
+    _pwm = pwm;
   }
   void on(uint32_t prd = 500, byte num = 1) {
     _prd = prd;
     _num = num;
     _flg1 = false;
-    digitalWrite(_pin, HIGH);
+    analogWrite(_pin, _pwm);
     _tmr = millis();
   }
   void off() {
@@ -38,7 +45,7 @@ public:
     }
     if (_flg1 and millis() - _tmr1 >= _prd1) {
       _flg1 = false;
-      digitalWrite(_pin, HIGH);
+      analogWrite(_pin, _pwm);
       _tmr = millis();
     }
   }
@@ -49,6 +56,7 @@ private:
   uint32_t _tmr1;
   uint32_t _prd1;
   byte _num;
+  byte _pwm;
   bool _flg;
   bool _flg1;
 };
