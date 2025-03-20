@@ -48,13 +48,13 @@ void gestTick() {
 
       } else if (g.gest == db[kk::plusBrightnessGest]) {
 
-        db[kk::brightness] = (int(db[kk::brightness]) + 32) % 256;
+        db[kk::brightness] = (int(db[kk::brightness]) + (int)db[kk::plusBrightness]) % 256;
         cursorGraph();
         oled.setContrast(db[kk::brightness]);
 
       } else if (g.gest == db[kk::minusBrightnessGest]) {
 
-        db[kk::brightness] -= 32;
+        db[kk::brightness] -= (int)db[kk::plusBrightness];
         if (db[kk::brightness] < 0) db[kk::brightness] = 255;
         cursorGraph();
         oled.setContrast(db[kk::brightness]);
