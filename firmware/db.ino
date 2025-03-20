@@ -62,10 +62,10 @@ void build(sets::Builder& b) {
   }
   {
     sets::Group g(b, "📶 WiFi");
-    b.Input(kk::ssid, "🌐 SSID");
-    b.Pass(kk::pass, "🔑 Pass");
-    b.Input(kk::ssid1, "🌐 reSSID");
-    b.Pass(kk::pass1, "🔑 rePass");
+    b.Input(kk::ssid, "🌐 Сеть");
+    b.Pass(kk::pass, "🔑 Пароль");
+    b.Input(kk::ssid1, "🌐 реСеть");
+    b.Pass(kk::pass1, "🔑 реПароль");
   }
   {
     if (b.Button("setup"_h, "🔂 Перезагрузить")) {
@@ -74,7 +74,7 @@ void build(sets::Builder& b) {
   }
 
   {
-    b.Link("🔗 GestureXY by MagmaXY", "https://github.com/MagmaXY/GestureXY");
+    b.Link("🔗 GestureXY от MagmaXY", "https://github.com/MagmaXY/GestureXY");
   }
 
 
