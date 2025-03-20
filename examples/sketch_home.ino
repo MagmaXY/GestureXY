@@ -1,8 +1,7 @@
 #define MQTT_HEADER "GXY:"
 
-#define GT_PRINT_MODE  // для отправки через print
-//#define GT_CLI        // для лучшей связи на высокой скорости
-#define GT_MICRO_TX  // вырезать код приёмника (оптимизация веса)
+#define GT_PRINT_MODE
+#define GT_MICRO_TX
 
 #include <GyverTransfer.h>
 GyverTransfer<13, GT_TX, 5000> tx;
@@ -24,8 +23,8 @@ struct gestureData {
     { "Zz11116666" },
     { "MagmaXY2020" },
   };
-  char local[21] = "GXY_Home";
-  char remote[21] = "GXY_Controller";
+  char local[21] = "GestureXY_Home";
+  char remote[21] = "GestureXY_Controller";
   char host[32] = "test.mosquitto.org";
   uint16_t port = 1883;
 };
@@ -50,7 +49,6 @@ void setup() {
       WiFi.begin(gData.ssid[1], gData.pass[1]);
     }
   }
-  connectMQTT();
   Serial.println("Connected");
   mqtt.setServer(gData.host, gData.port);
   mqtt.setCallback(callback);
@@ -89,9 +87,7 @@ void callback(char* topic, byte* payload, uint16_t len) {
   sendPacket("Confirm");
 }
 
-// отправляем пакет
 void sendPacket(String msg) {
-  // GWL:Confirm
   String s = MQTT_HEADER;
   s += msg;
   mqtt.publish(gData.remote, s.c_str());
