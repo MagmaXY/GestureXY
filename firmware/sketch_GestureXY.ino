@@ -35,6 +35,7 @@ DB_KEYS(
   stateGest,
   vibrationGest,
   plusBrightnessGest,
+  plusBrightness,
   minusBrightnessGest,
   nextNameGest,
   previousNameGest,
