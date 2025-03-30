@@ -26,6 +26,7 @@ void db_init() {
   db.init(kk::stateGest, "Up-Down");
   db.init(kk::vibrationGest, "Down-Up");
   db.init(kk::plusBrightnessGest, "Up");
+  db.init(kk::plusBrightness, 32);
   db.init(kk::minusBrightnessGest, "Down");
   db.init(kk::nextNameGest, "Right-Left");
   db.init(kk::previousNameGest, "Left-Right");
@@ -60,6 +61,7 @@ void build(sets::Builder& b) {
     b.Input(kk::stateGest, "📴 Управление");
     b.Input(kk::vibrationGest, "🚩 Вибрация");
     b.Input(kk::plusBrightnessGest, "🔆 Яркость");
+    b.Slider(kk::plusBrightness, "🎇 Изменение яркости", 0, 255, 1);
     b.Input(kk::minusBrightnessGest, "🔅 Яркость");
     b.Input(kk::nextNameGest, "🔜 Устройство");
     b.Input(kk::previousNameGest, "🔚 Устройство");
