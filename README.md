@@ -18,6 +18,8 @@
 ### 📑 [Корпус:](https://github.com/MagmaXY/GestureXY/tree/main/3d%20%20models)
 * Пластик
 * [Плата](https://oshwlab.com/magmaxy/pcb_smd_gesturexy)
+  
+ ![pcb](https://github.com/user-attachments/assets/f8aa9226-6c27-410d-8903-cd11d21bc371)
 * Штырьки
 * Ремень
 * Болты
