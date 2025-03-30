@@ -17,7 +17,7 @@
 * Кнопка
 ### 📑 [Корпус:](https://github.com/MagmaXY/GestureXY/tree/main/3d%20%20models)
 * Пластик
-* Плата
+* [Плата](https://oshwlab.com/magmaxy/pcb_smd_gesturexy)
 * Штырьки
 * Ремень
 * Болты
