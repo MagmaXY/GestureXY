@@ -31,7 +31,6 @@ public:
   }
   void flag(bool flg = true) {
     _flg = flg;
-    if (!flg) off();
   }
   void tick() {
     if (_flg and _num > 0 and millis() - _tmr >= _prd) {
