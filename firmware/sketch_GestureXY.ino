@@ -48,7 +48,7 @@ DB_KEYS(
 WiFiClient espClient;
 PubSubClient mqtt(espClient);
 GyverDBFile db(&LittleFS, "🤘 GestureXY.db");
-SettingsGyver sett((String)"🤟 GestureXY v" + VERSION, &db);
+SettingsGyver sett((String)"🤟 GestureXY " + VERSION, &db);
 GyverOLED<SSD1306_128x32, OLED_NO_BUFFER> oled;
 Button btn(D5);
 VibroXY vibro(D6);
