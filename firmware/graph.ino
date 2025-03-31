@@ -686,7 +686,6 @@ void setupGraph() {
   oled.drawBitmap(110, 0, bw_16x29, 16, 29, BITMAP_NORMAL, BUF_ADD);
   oled.setScale(1);
   oled.setCursor(0, 2);
-  oled.print("v");
   oled.print(VERSION);
   oled.print(" от MagmaXY   ");
   oled.invertText(0);
