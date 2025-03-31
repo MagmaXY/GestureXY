@@ -1,3 +1,5 @@
+#define VERSION 1.5
+
 #include "ESP8266WiFi.h"
 #include "PubSubClient.h"
 #include "SettingsGyver.h"
