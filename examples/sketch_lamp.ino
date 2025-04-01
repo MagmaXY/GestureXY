@@ -19,16 +19,16 @@ struct gestureData {
     { "Zz11116666" },
     { "MagmaXY2020" },
   };
-  char local[21] = "GXY_Lamp";
-  char remote[21] = "GXY_Controller";
-  char host[32] = "test.mosquitto.org";
+  String local = "GXY_Лампа";
+  String remote = "GXY_Контроллер";
+  String host = "test.mosquitto.org";
   uint16_t port = 1883;
 
   String gest = "";
   bool state = false;
   byte brightness = 102;
   byte scene = 0;
-  String scenes[4] = { "None", "Cold", "Normal", "Warm" };
+  String scenes[4] = { "Нет", "Холодный", "Нормальный", "Тёплый" };
   byte colors[8][3]{
     { 255, 0, 0 },
     { 255, 110, 0 },
@@ -109,32 +109,32 @@ void callback(char* topic, byte* payload, uint16_t len) {
   Serial.println(str);
   String readData = str.substring(hLen);
   Serial.println(readData);
-  if (readData == "Clockwise") {
+  if (readData == "По часовой") {
     gData.brightness += 51;
     FastLED.setBrightness(gData.brightness);
     FastLED.show();
-    sendPacket("Brightness: " + String(gData.brightness));
-  } else if (readData == "Anticlockwise") {
+    sendPacket("Яркость лампы: " + String(gData.brightness));
+  } else if (readData == "Против часовой") {
     gData.brightness -= 51;
     FastLED.setBrightness(gData.brightness);
     FastLED.show();
-    sendPacket("Brightness: " + String(gData.brightness));
-  } else if (readData == "Up") {
+    sendPacket("Яркость лампы: " + String(gData.brightness));
+  } else if (readData == "Вперёд") {
     gData.state = !gData.state;
     if (gData.state) {
-      if (gData.scenes[gData.scene] == "None") {
+      if (gData.scenes[gData.scene] == "Нет") {
         for (int i = 0; i < LED_NUM; i++) {
           leds[i].setRGB(gData.colors[gData.color][0], gData.colors[gData.color][1], gData.colors[gData.color][2]);
         }
-      } else if (gData.scenes[gData.scene] == "Cold") {
+      } else if (gData.scenes[gData.scene] == "Холодный") {
         for (int i = 0; i < LED_NUM; i++) {
           leds[i].setRGB(0, 213, 255);
         }
-      } else if (gData.scenes[gData.scene] == "Normal") {
+      } else if (gData.scenes[gData.scene] == "Нормальный") {
         for (int i = 0; i < LED_NUM; i++) {
           leds[i].setRGB(255, 255, 255);
         }
-      } else if (gData.scenes[gData.scene] == "Warm") {
+      } else if (gData.scenes[gData.scene] == "Тёплый") {
         for (int i = 0; i < LED_NUM; i++) {
           leds[i].setRGB(255, 200, 0);
         }
@@ -145,31 +145,31 @@ void callback(char* topic, byte* payload, uint16_t len) {
       }
     }
     FastLED.show();
-    sendPacket(gData.state ? "On" : "Off");
-  } else if (readData == "Down") {
+    sendPacket(gData.state ? "Лампа включилась" : "Лампа выключилась");
+  } else if (readData == "Назад") {
     gData.scene = ++gData.scene % 4;
     if (gData.state) {
-      if (gData.scenes[gData.scene] == "None") {
+      if (gData.scenes[gData.scene] == "Нет") {
         for (int i = 0; i < LED_NUM; i++) {
           leds[i].setRGB(gData.colors[gData.color][0], gData.colors[gData.color][1], gData.colors[gData.color][2]);
         }
-      } else if (gData.scenes[gData.scene] == "Cold") {
+      } else if (gData.scenes[gData.scene] == "Холодный") {
         for (int i = 0; i < LED_NUM; i++) {
           leds[i].setRGB(0, 213, 255);
         }
-      } else if (gData.scenes[gData.scene] == "Normal") {
+      } else if (gData.scenes[gData.scene] == "Нормальный") {
         for (int i = 0; i < LED_NUM; i++) {
           leds[i].setRGB(255, 255, 255);
         }
-      } else if (gData.scenes[gData.scene] == "Warm") {
+      } else if (gData.scenes[gData.scene] == "Тёплый") {
         for (int i = 0; i < LED_NUM; i++) {
           leds[i].setRGB(255, 200, 0);
         }
       }
     }
     FastLED.show();
-    sendPacket(gData.scenes[gData.scene]);
-  } else if (readData == "Up-Down") {
+    sendPacket(gData.scenes[gData.scene] + " свет лампы");
+  } else if (readData == "Вперёд-Назад") {
     gData.color = ++gData.color % 7;
     String msg;
     for (byte i = 0; i < 2; i++) {
@@ -181,8 +181,8 @@ void callback(char* topic, byte* payload, uint16_t len) {
       leds[i].setRGB(gData.colors[gData.color][0], gData.colors[gData.color][1], gData.colors[gData.color][2]);
     }
     FastLED.show();
-    sendPacket(msg);
-  } else if (readData == "Down-Up") {
+    sendPacket(msg + " цвет лампы");
+  } else if (readData == "Назад-Вперёд") {
     gData.color--;
     if (gData.color < 0) gData.color = 0;
     String msg;
@@ -195,28 +195,28 @@ void callback(char* topic, byte* payload, uint16_t len) {
       leds[i].setRGB(gData.colors[gData.color][0], gData.colors[gData.color][1], gData.colors[gData.color][2]);
     }
     FastLED.show();
-    sendPacket(msg);
-  } else if (readData == "Away") {
+    sendPacket(msg + " цвет лампы");
+  } else if (readData == "Уход" or readData == "Сон") {
     gData.state = false;
     for (int i = 0; i < LED_NUM; i++) {
       leds[i].setRGB(0, 0, 0);
     }
     FastLED.show();
-  } else if (readData == "Comeback") {
+  } else if (readData == "Приход") {
     gData.state = true;
-    if (gData.scenes[gData.scene] == "None") {
+    if (gData.scenes[gData.scene] == "Нет") {
       for (int i = 0; i < LED_NUM; i++) {
         leds[i].setRGB(gData.colors[gData.color][0], gData.colors[gData.color][1], gData.colors[gData.color][2]);
       }
-    } else if (gData.scenes[gData.scene] == "Cold") {
+    } else if (gData.scenes[gData.scene] == "Холодный") {
       for (int i = 0; i < LED_NUM; i++) {
         leds[i].setRGB(0, 213, 255);
       }
-    } else if (gData.scenes[gData.scene] == "Normal") {
+    } else if (gData.scenes[gData.scene] == "Нормальный") {
       for (int i = 0; i < LED_NUM; i++) {
         leds[i].setRGB(255, 255, 255);
       }
-    } else if (gData.scenes[gData.scene] == "Warm") {
+    } else if (gData.scenes[gData.scene] == "Тёплый") {
       for (int i = 0; i < LED_NUM; i++) {
         leds[i].setRGB(255, 200, 0);
       }
