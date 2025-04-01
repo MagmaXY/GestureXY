@@ -23,16 +23,16 @@ void db_init() {
   db.init(kk::reaction, 400);
   db.init(kk::quit, 800);
   db.init(kk::connect, false);
-  db.init(kk::stateGest, "Up-Down");
-  db.init(kk::vibrationGest, "Down-Up");
-  db.init(kk::plusBrightnessGest, "Up");
+  db.init(kk::stateGest, 2);
+  db.init(kk::vibrationGest, 3);
+  db.init(kk::plusBrightnessGest, 0);
   db.init(kk::plusBrightness, 32);
-  db.init(kk::minusBrightnessGest, "Down");
-  db.init(kk::nextNameGest, "Right-Left");
-  db.init(kk::previousNameGest, "Left-Right");
-  db.init(kk::nextSceneGest, "Right");
-  db.init(kk::previousSceneGest, "Left");
-  db.init(kk::sceneGest, "Up");
+  db.init(kk::minusBrightnessGest, 1);
+  db.init(kk::nextNameGest, 6);
+  db.init(kk::previousNameGest, 7);
+  db.init(kk::nextSceneGest, 4);
+  db.init(kk::previousSceneGest, 5);
+  db.init(kk::sceneGest, 0);
 }
 
 void build(sets::Builder& b) {
@@ -64,16 +64,17 @@ void build(sets::Builder& b) {
   }
   {
     sets::Group g(b, "👋 Жесты");
-    b.Input(kk::stateGest, "📴 Управление");
-    b.Input(kk::vibrationGest, "🚩 Вибрация");
-    b.Input(kk::plusBrightnessGest, "🔆 Яркость");
+    String gests = "Вперёд;Назад;Вперёд-Назад;Назад-Вперёд;Вправо;Влево;Вправо-Влево;Влево-Вправо;Вниз;Вверх;Вниз-Вверх;Вверх-Вниз;По часовой;Против часовой;Волна";
+    b.Select(kk::stateGest, "📴 Управление", gests);
+    b.Select(kk::vibrationGest, "🚩 Вибрация", gests);
+    b.Select(kk::plusBrightnessGest, "🔆 Яркость", gests);
     b.Slider(kk::plusBrightness, "🎇 Изменение яркости", 0, 255, 1);
-    b.Input(kk::minusBrightnessGest, "🔅 Яркость");
-    b.Input(kk::nextNameGest, "🔜 Устройство");
-    b.Input(kk::previousNameGest, "🔚 Устройство");
-    b.Input(kk::nextSceneGest, "🔜 Сценарий");
-    b.Input(kk::previousSceneGest, "🔚 Сценарий");
-    b.Input(kk::sceneGest, "📨 Сценарий");
+    b.Select(kk::minusBrightnessGest, "🔅 Яркость", gests);
+    b.Select(kk::nextNameGest, "🔜 Устройство", gests);
+    b.Select(kk::previousNameGest, "🔚 Устройство", gests);
+    b.Select(kk::nextSceneGest, "🔜 Сценарий", gests);
+    b.Select(kk::previousSceneGest, "🔚 Сценарий", gests);
+    b.Select(kk::sceneGest, "📨 Сценарий", gests);
   }
   {
     sets::Group g(b, "👨‍💻 Serial");
