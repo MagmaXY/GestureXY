@@ -5,7 +5,7 @@ void gestTick() {
   if (!db[kk::state] and g.gest == g.getGest(db[kk::stateGest])) {
 
     db[kk::state] = true;
-    Serial.println("Active");
+    Serial.println("Активный");
     vibro.on(500);
     cursorGraph();
     gData.timer = millis();
@@ -13,7 +13,7 @@ void gestTick() {
 
   } else if (db[kk::state] and gData.name == 0 and gData.scene == 0 and g.gest == g.getGest(db[kk::stateGest])) {
     db[kk::state] = false;
-    Serial.println("Inactive");
+    Serial.println("Неактивный");
     oled.clear();
     gData.timer = millis();
     return;
