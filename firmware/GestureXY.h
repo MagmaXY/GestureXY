@@ -240,6 +240,7 @@ private:
     switch (_turn) {
       case 0:
         gest = _gest;
+        break;
       case 90:
         if (_gest == "Right") {
           gest = "Up";
