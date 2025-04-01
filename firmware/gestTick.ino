@@ -72,7 +72,7 @@ void gestTick() {
     }
   } else if (g.gest == g.getGest(db[kk::nextSceneGest]) or g.gest == g.getGest(db[kk::previousSceneGest])) {
 
-    int8_t move = g.gest == db[kk::nextSceneGest] ? 1 : -1;
+    int8_t move = g.gest == g.getGest(db[kk::nextSceneGest]) ? 1 : -1;
     if (gData.scene + move < 0) {
       gData.scene = getScenesCount() - 1;
     } else {
