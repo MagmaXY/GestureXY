@@ -19,7 +19,7 @@
 * Пластик
 * [Плата](https://oshwlab.com/magmaxy/pcb_smd_gesturexy)
   
- ![pcb](https://github.com/user-attachments/assets/f8aa9226-6c27-410d-8903-cd11d21bc371)
+ ![pcb](https://github.com/MagmaXY/GestureXY/blob/main/pcb2.png)
 * Штырьки
 * Ремень
 * Болты
