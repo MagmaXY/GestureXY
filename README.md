@@ -33,7 +33,7 @@
 * Автоотключение через заданное время
 * [Веб приложение:](https://github.com/MagmaXY/GestureXY/blob/main/webface.png)
   
-![webface](https://github.com/MagmaXY/GestureXY/blob/main/webface.png)
+![GestureXY v1.5](https://github.com/MagmaXY/GestureXY/blob/main/GestureXY%20v1.5.png)
 
 ### 🛐 [Зависимости:](https://www.arduino.cc/en/software)
 * [PubSubClient](https://github.com/knolleary/pubsubclient) 
