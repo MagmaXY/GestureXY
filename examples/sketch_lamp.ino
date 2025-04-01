@@ -98,7 +98,7 @@ void connectMQTT() {
     timer = millis();
     String id("GestureXY-");
     id += String(random(0xffffff), HEX);
-    if (mqtt.connect(id.c_str())) mqtt.subscribe(gData.local);
+    if (mqtt.connect(id.c_str())) mqtt.subscribe(gData.local.c_str());
   }
 }
 
@@ -228,5 +228,5 @@ void callback(char* topic, byte* payload, uint16_t len) {
 void sendPacket(String msg) {
   String s = MQTT_HEADER;
   s += msg;
-  mqtt.publish(gData.remote, s.c_str());
+  mqtt.publish(gData.remote.c_str(), s.c_str());
 }
