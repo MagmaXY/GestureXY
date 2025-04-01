@@ -9,8 +9,8 @@ void db_init() {
   db.init(kk::host, "test.mosquitto.org");
   db.init(kk::port, 1883);
   db.init(kk::header, "GXY:");
-  db.init(kk::names, "GXY_Controller,GXY_Home,GXY_Lamp");
-  db.init(kk::scenes, "None,Wake up,Away,Comeback,Cinema,Sleep");
+  db.init(kk::names, "GXY_Контроллер,GXY_Дом,GXY_Лампа");
+  db.init(kk::scenes, "Нет,Утро,Уход,Приход,Кино,Сон");
   db.init(kk::sep, ',');
   db.init(kk::serial, 115200);
   db.init(kk::searchs, 2000);
@@ -114,7 +114,7 @@ void build(sets::Builder& b) {
         oled.setContrast(b.build.value);
         break;
       case kk::state:
-        Serial.println(b.build.value.toInt() ? "Active" : "Inactive");
+        Serial.println(b.build.value.toInt() ? "Активный" : "Неактивный");
         oled.clear();
         vibro.on(500);
         if (b.build.value.toInt()) cursorGraph();
@@ -123,7 +123,7 @@ void build(sets::Builder& b) {
         if (db[kk::state] and gData.scene == 0) cursorGraph();
         break;
       case kk::scenes:
-        if (!b.build.value.startsWith("None,"))
+        if (!b.build.value.startsWith("Нет,"))
           db[kk::scenes] = "None," + String(b.build.value);
         if (db[kk::state] and gData.scene != 0) cursorGraph();
         break;
