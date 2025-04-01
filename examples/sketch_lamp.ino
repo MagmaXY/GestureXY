@@ -75,7 +75,7 @@ void setup() {
   Serial.println("WiFi");
   for (int i = 0; i < LED_NUM; i++) leds[i].setRGB(0, 0, 0);
   FastLED.show();
-  mqtt.setServer(gData.host, gData.port);
+  mqtt.setServer(gData.host.c_str(), gData.port);
   mqtt.setCallback(callback);
   mqtt.setSocketTimeout(1000);
   connectMQTT();
