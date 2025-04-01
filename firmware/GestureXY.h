@@ -163,6 +163,26 @@ public:
       _exchange();
     }
   }
+  String getGest(byte ind) {
+    String gests[15] = {
+      "Up",
+      "Down",
+      "Up-Down",
+      "Down-Up",
+      "Right",
+      "Left",
+      "Right-Left",
+      "Left-Right",
+      "Forward",
+      "Backward",
+      "Forward-Backward",
+      "Backward-Forward",
+      "Clockwise",
+      "Anticlockwise",
+      "Wave"
+    };
+    return gests[ind];
+  }
   String gest;
 private:
   int16_t _turn;
@@ -173,7 +193,7 @@ private:
   bool _flg1;
   uint32_t _quit;
   uint32_t _react;
-  
+
   String _gest;
   void _exchange() {
     if (_gest == "") return;
