@@ -45,10 +45,11 @@ DB_KEYS(
   previousSceneGest,
   sceneGest);
 ;
+
 WiFiClient espClient;
 PubSubClient mqtt(espClient);
 GyverDBFile db(&LittleFS, "🤘 GestureXY.db");
-SettingsGyver sett((String)"🤟 GestureXY " + VERSION, &db);
+SettingsGyver sett((String) "🤟 GestureXY " + VERSION, &db);
 GyverOLED<SSD1306_128x32, OLED_NO_BUFFER> oled;
 Button btn(D5);
 VibroXY vibro(D6);
@@ -80,15 +81,15 @@ void setup() {
   uint8_t error = g.init();
 
   if (error) {
-    Serial.print("INIT ERROR,CODE:");
+    Serial.print("Ошибка:");
     Serial.println(error);
-    oled.print("Error paj7620");
+    oled.print("Ошибка paj7620");
     delay(1000);
     ESP.restart();
   }
 
-  Serial.println("WiFi");
-  oled.print("WiFi");
+  Serial.println("Сеть");
+  oled.print("Сеть");
   WiFi.begin(db[kk::ssid], db[kk::pass]);
 
   bool flag = false;
@@ -101,11 +102,11 @@ void setup() {
       timer = 0;
       if (!flag) {
         flag = true;
-        Serial.println("reWiFi");
+        Serial.println("реСеть");
         WiFi.disconnect();
         WiFi.begin(db[kk::ssid1], db[kk::pass1]);
         setupGraph();
-        oled.print("reWiFi");
+        oled.print("реСеть");
       } else {
         ESP.restart();
       }
@@ -115,7 +116,7 @@ void setup() {
     timer++;
     delay(1000);
   }
-  Serial.println("Connected");
+  Serial.println("Подключился");
   sett.begin();
   sett.config.theme = sets::Colors::Green;
   sett.onBuild(build);
@@ -156,7 +157,7 @@ void btnTick() {
 void oledTick() {
   if (!db[kk::ons]) return;
   if (millis() - gData.timer >= (uint32_t)db[kk::ons]) {
-    if (db[kk::state]) Serial.println("Inactive");
+    if (db[kk::state]) Serial.println("Неактивный");
     oled.clear();
     db[kk::state] = false;
   }
