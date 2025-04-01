@@ -67,7 +67,7 @@ void gestTick() {
     } else {
 
       cursorGraph();
-      oled.print(g.getRUGest);
+      oled.print(g.getRUGest());
       sendGest();
     }
   } else if (g.gest == g.getGest(db[kk::nextSceneGest]) or g.gest == g.getGest(db[kk::previousSceneGest])) {
