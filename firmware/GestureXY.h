@@ -183,6 +183,45 @@ public:
     };
     return gests[ind];
   }
+  String getRUGest() {
+    String gests[15] = {
+      "Up",
+      "Down",
+      "Up-Down",
+      "Down-Up",
+      "Right",
+      "Left",
+      "Right-Left",
+      "Left-Right",
+      "Forward",
+      "Backward",
+      "Forward-Backward",
+      "Backward-Forward",
+      "Clockwise",
+      "Anticlockwise",
+      "Wave"
+    };
+    String RUgests[15] = {
+      "Вперёд",
+      "Назад",
+      "Вперёд-Назад",
+      "Назад-Вперёд",
+      "Вправо",
+      "Влево",
+      "Вправо-Влево",
+      "Влево-Вправо",
+      "Вниз",
+      "Вверх",
+      "Вниз-Вверх",
+      "Вверх-Вниз",
+      "По часовой",
+      "Против часовой",
+      "Волна"
+    };
+    for (byte i = 0; i < 15; i++) {
+      if (gest == gests[i]) return RUgests[i];
+    }
+  }
   String gest;
 private:
   int16_t _turn;
