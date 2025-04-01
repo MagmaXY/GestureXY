@@ -221,6 +221,7 @@ public:
     for (byte i = 0; i < 15; i++) {
       if (gest == gests[i]) return RUgests[i];
     }
+    return "";
   }
   String gest;
 private:
