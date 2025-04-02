@@ -32,14 +32,14 @@ void callback(char* topic, byte* payload, uint16_t len) {
     FastLED.setBrightness(db[kk::brightness]);
     FastLED.show();
     String s = "Яркость лампы: ";
-    s += db[kk::brightness].c_str();
+    s += gest(db[kk::brightness]);
     sendPacket(s);
   } else if (data == g.getRUGest(db[kk::minusBrightnessGest])) {
     db[kk::brightness] -= (byte)db[kk::plusBrightness];
     FastLED.setBrightness(db[kk::brightness]);
     FastLED.show();
     String s = "Яркость лампы: ";
-    s += db[kk::brightness].c_str();
+    s += gest(db[kk::brightness]);
     sendPacket(s);
   } else if (data == g.getRUGest(db[kk::stateGest])) {
     db[kk::state] = !db[kk::state];
@@ -92,4 +92,8 @@ void callback(char* topic, byte* payload, uint16_t len) {
     db[kk::state] = true;
     light();
   }
+}
+
+String gest(String g) {
+  return g;
 }
