@@ -32,7 +32,7 @@ void callback(char* topic, byte* payload, uint16_t len) {
 void sendGest() {
   String s;
   s += String(db[kk::header]);
-  s += g.gest;
+  s += g.getRUGest();
   mqtt.publish(getName(gData.name).c_str(), s.c_str());
 }
 
