@@ -68,8 +68,6 @@ void setup() {
   g.setReaction(db[kk::reaction]);
   g.setTurn(db[kk::turn]);
   vibro.flag(db[kk::vibration]);
-  db[kk::state] = false;
-  db[kk::connect] = false;
 
   Serial.begin(db[kk::serial]);
   Serial.setTimeout(50);
