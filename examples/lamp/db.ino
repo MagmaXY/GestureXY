@@ -16,10 +16,10 @@ void db_init() {
   db.init(kk::state, false);
   db.init(kk::stateGest, 0);
   db.init(kk::tempGest, 1);
-  db.init(kk::plusBrightnessGest, 12);
+  db.init(kk::plusBrightnessGest, 4);
   db.init(kk::plusBrightness, 32);
-  db.init(kk::minusBrightnessGest, 13);
-  db.init(kk::previousGest, 4);
+  db.init(kk::minusBrightnessGest, 5);
+  db.init(kk::previousGest, 2);
   db.init(kk::nextGest, 3);
 }
 
