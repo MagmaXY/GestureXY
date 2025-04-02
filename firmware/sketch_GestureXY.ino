@@ -81,7 +81,7 @@ void setup() {
   uint8_t error = g.init();
 
   if (error) {
-    Serial.print("Ошибка:");
+    Serial.print("Ошибка paj7620:");
     Serial.println(error);
     oled.print("Ошибка paj7620");
     delay(1000);
