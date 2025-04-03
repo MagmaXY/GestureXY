@@ -21,6 +21,9 @@ void db_init() {
   db.init(kk::minusBrightnessGest, 5);
   db.init(kk::previousGest, 2);
   db.init(kk::nextGest, 3);
+  db.init(kk::sep, ',');
+  db.init(kk::offScenes, "Уход,Сон");
+  db.init(kk::onScenes, "Приход");
 }
 
 void build(sets::Builder& b) {
@@ -52,6 +55,12 @@ void build(sets::Builder& b) {
     b.Input(kk::header, "📨 Заголовок");
     b.Input(kk::local, "🏮 Устройство");
     b.Input(kk::remote, "🤖 Устройство");
+  }
+  {
+    sets::Group g(b, "📨 Сценарии");
+    b.Input(kk::sep, "✏️ Символ-разделитель");
+    b.Input(kk::onScenes, "📜 Включение");
+    b.Input(kk::offScenes, "📑 Выключение");
   }
   {
     sets::Group g(b, "📶 WiFi");
