@@ -1,3 +1,4 @@
+
 void db_init() {
   LittleFS.begin();
   db.begin();
@@ -123,7 +124,7 @@ void build(sets::Builder& b) {
         break;
       case kk::scenes:
         if (!b.build.value.startsWith("Нет,"))
-          db[kk::scenes] = "None," + String(b.build.value);
+          db[kk::scenes] = "Нет," + String(b.build.value);
         if (db[kk::state] and gData.scene != 0) cursorGraph();
         break;
       case kk::vibration:
