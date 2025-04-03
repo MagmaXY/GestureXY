@@ -105,21 +105,20 @@ void loop() {
 }
 
 void light() {
-  if (gData.scenes[gData.scene] == "Нет") {
-    for (int i = 0; i < NUM; i++) {
-      leds[i].setRGB(gData.colors[gData.color][0], gData.colors[gData.color][1], gData.colors[gData.color][2]);
-    }
-  } else if (gData.scenes[gData.scene] == "Холодный") {
-    for (int i = 0; i < NUM; i++) {
-      leds[i].setRGB(0, 213, 255);
-    }
-  } else if (gData.scenes[gData.scene] == "Нормальный") {
-    for (int i = 0; i < NUM; i++) {
-      leds[i].setRGB(255, 255, 255);
-    }
-  } else if (gData.scenes[gData.scene] == "Тёплый") {
-    for (int i = 0; i < NUM; i++) {
-      leds[i].setRGB(255, 200, 0);
+  for (int i = 0; i < NUM; i++) {
+    switch (gData.scene) {
+      case 0:
+        leds[i].setRGB(gData.colors[gData.color][0], gData.colors[gData.color][1], gData.colors[gData.color][2]);
+        break;
+      case 1:
+        leds[i].setRGB(0, 213, 255);
+        break;
+      case 2:
+        leds[i].setRGB(255, 255, 255);
+        break;
+      case 3:
+        leds[i].setRGB(255, 200, 0);
+        break;
     }
   }
   FastLED.show();
