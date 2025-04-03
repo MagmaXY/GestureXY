@@ -86,18 +86,47 @@ void callback(char* topic, byte* payload, uint16_t len) {
     }
     FastLED.show();
     sendPacket(msg + " цвет лампы");
-  } else if (data == "Уход" or data == "Сон") {
-    db[kk::state] = false;
-    for (int i = 0; i < NUM; i++) {
-      leds[i].setRGB(0, 0, 0);
+  } else {
+    for (byte i = 0; i < offCount(); i++) {
+      if (data == off(i)) {
+        db[kk::state] = false;
+        for (int i = 0; i < NUM; i++) {
+          leds[i].setRGB(0, 0, 0);
+        }
+        FastLED.show();
+        break;
+      }
     }
-    FastLED.show();
-  } else if (data == "Приход") {
-    db[kk::state] = true;
-    light();
+    for (byte i = 0; i < onCount(); i++) {
+      if (data == on(i)) {
+        db[kk::state] = true;
+        light();
+        break;
+      }
+    }
   }
 }
 
 String gest(String g) {
   return g;
+}
+
+String on(byte i) {
+  ParsingXY p(db[kk::sep]);
+  return p.sub(db[kk::onScenes].c_str(), i);
+}
+
+byte onCount() {
+  ParsingXY p(db[kk::sep]);
+  return p.amount(db[kk::onScenes].c_str());
+}
+
+String off(byte i) {
+  ParsingXY p(db[kk::sep]);
+  return p.sub(db[kk::offScenes].c_str(), i);
+}
+
+byte offCount() {
+  ParsingXY p(db[kk::sep]);
+  return p.amount(db[kk::offScenes].c_str());
 }
