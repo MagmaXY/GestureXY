@@ -24,6 +24,8 @@ void db_init() {
   db.init(kk::sep, ',');
   db.init(kk::offScenes, "Уход,Сон");
   db.init(kk::onScenes, "Приход");
+  db.init(kk::workScenes, "Работа");
+  db.init(kk::chillScenes, "Отдых");
 }
 
 void build(sets::Builder& b) {
@@ -61,6 +63,8 @@ void build(sets::Builder& b) {
     b.Input(kk::sep, "✏️ Символ-разделитель");
     b.Input(kk::onScenes, "📜 Включение");
     b.Input(kk::offScenes, "📑 Выключение");
+    b.Input(kk::workScenes, "📜 Работа");
+    b.Input(kk::chillScenes, "📑 Отдых");
   }
   {
     sets::Group g(b, "📶 WiFi");
