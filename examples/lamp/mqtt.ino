@@ -56,29 +56,33 @@ void callback(char* topic, byte* payload, uint16_t len) {
     if (db[kk::state]) light();
     sendPacket(gData.scenes[gData.scene] + " свет лампы");
   } else if (data == g.getRUGest(db[kk::nextGest])) {
-    gData.color = ++gData.color % 7;
+    gData.color = ++gData.color % 8;
     String msg;
     for (byte i = 0; i < 2; i++) {
       msg += String(gData.colors[gData.color][i]);
       msg += ", ";
     }
     msg += String(gData.colors[gData.color][2]);
-    for (int i = 0; i < NUM; i++) {
-      leds[i].setRGB(gData.colors[gData.color][0], gData.colors[gData.color][1], gData.colors[gData.color][2]);
+    if (db[kk::state]) {
+      for (int i = 0; i < NUM; i++) {
+        leds[i].setRGB(gData.colors[gData.color][0], gData.colors[gData.color][1], gData.colors[gData.color][2]);
+      }
     }
     FastLED.show();
     sendPacket(msg + " цвет лампы");
   } else if (data == g.getRUGest(db[kk::previousGest])) {
     gData.color--;
-    if (gData.color < 0) gData.color = 0;
+    if (gData.color < 0) gData.color = 8;
     String msg;
     for (byte i = 0; i < 2; i++) {
       msg += String(gData.colors[gData.color][i]);
       msg += ", ";
     }
     msg += String(gData.colors[gData.color][2]);
-    for (int i = 0; i < NUM; i++) {
-      leds[i].setRGB(gData.colors[gData.color][0], gData.colors[gData.color][1], gData.colors[gData.color][2]);
+    if (db[kk::state]) {
+      for (int i = 0; i < NUM; i++) {
+        leds[i].setRGB(gData.colors[gData.color][0], gData.colors[gData.color][1], gData.colors[gData.color][2]);
+      }
     }
     FastLED.show();
     sendPacket(msg + " цвет лампы");
