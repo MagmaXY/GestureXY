@@ -63,8 +63,8 @@ void build(sets::Builder& b) {
     b.Input(kk::sep, "✏️ Символ-разделитель");
     b.Input(kk::onScenes, "📜 Включение");
     b.Input(kk::offScenes, "📑 Выключение");
-    b.Input(kk::workScenes, "📜 Работа");
-    b.Input(kk::chillScenes, "📑 Отдых");
+    b.Input(kk::workScenes, "📜 Нормальный свет");
+    b.Input(kk::chillScenes, "📑 Тёплый свет");
   }
   {
     sets::Group g(b, "📶 WiFi");
