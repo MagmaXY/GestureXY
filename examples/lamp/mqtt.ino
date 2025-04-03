@@ -104,6 +104,22 @@ void callback(char* topic, byte* payload, uint16_t len) {
         break;
       }
     }
+    for (byte i = 0; i < workCount(); i++) {
+      if (data == work(i)) {
+        gData.scene = 2;
+        db[kk::state] = true;
+        light();
+        break;
+      }
+    }
+    for (byte i = 0; i < chillCount(); i++) {
+      if (data == chill(i)) {
+        gData.scene = 3;
+        db[kk::state] = true;
+        light();
+        break;
+      }
+    }
   }
 }
 
@@ -129,4 +145,24 @@ String off(byte i) {
 byte offCount() {
   ParsingXY p(db[kk::sep]);
   return p.amount(db[kk::offScenes].c_str());
+}
+
+String work(byte i) {
+  ParsingXY p(db[kk::sep]);
+  return p.sub(db[kk::workScenes].c_str(), i);
+}
+
+byte workCount() {
+  ParsingXY p(db[kk::sep]);
+  return p.amount(db[kk::workScenes].c_str());
+}
+
+String chill(byte i) {
+  ParsingXY p(db[kk::sep]);
+  return p.sub(db[kk::chillScenes].c_str(), i);
+}
+
+byte chillCount() {
+  ParsingXY p(db[kk::sep]);
+  return p.amount(db[kk::chillScenes].c_str());
 }
