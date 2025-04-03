@@ -7,6 +7,7 @@
 #include <FastLED.h>
 
 #include "GestureXY.h"
+#include "ParsingXY.h"
 
 WiFiClient espClient;
 PubSubClient mqtt(espClient);
@@ -32,7 +33,10 @@ DB_KEYS(
   plusBrightness,
   minusBrightnessGest,
   nextGest,
-  previousGest);
+  previousGest,
+  offScenes,
+  onScenes,
+  sep);
 ;
 
 GyverDBFile db(&LittleFS, "🔦 LampXY.db");
