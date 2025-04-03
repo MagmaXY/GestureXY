@@ -36,6 +36,8 @@ DB_KEYS(
   previousGest,
   offScenes,
   onScenes,
+  workScenes,
+  chillScenes,
   sep);
 ;
 
