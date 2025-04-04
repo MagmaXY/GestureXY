@@ -22,14 +22,14 @@ void setup() {
   delay(50);
   BootKeyboard.releaseAll();
 }
-String str = "";
 
 void isr() {
   rx.tickISR();
 }
 
 void loop() {
-  if (str != "") {
+  if (rx.available()) {
+    String str = rx.readString();
     Serial.println(str);
     if (str == "Вперёд") {
       Consumer.write(MEDIA_PAUSE);
@@ -76,12 +76,5 @@ void loop() {
       delay(50);
       BootKeyboard.releaseAll();
     }
-    str = "";
-  }
-  if (rx.available()) {
-    str = rx.readString();
-  }
-  if (Serial.available()) {
-    str = Serial.readString();
   }
 }
