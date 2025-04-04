@@ -31,17 +31,17 @@ void isr() {
 void loop() {
   if (str != "") {
     Serial.println(str);
-    if (str == "Up") {
+    if (str == "Вперёд") {
       Consumer.write(MEDIA_PAUSE);
-    } else if (str == "Down") {
+    } else if (str == "Назад") {
       Consumer.write(MEDIA_VOLUME_MUTE);
-    } else if (str == "Up") {
+    } else if (str == "Вперёд") {
       Consumer.write(MEDIA_PAUSE);
-    } else if (str == "Up-Down") {
+    } else if (str == "Вперёд-Назад") {
       BootKeyboard.press(KEY_BACKSPACE);
       delay(200);
       BootKeyboard.releaseAll();
-    } else if (str == "Down-Up") {
+    } else if (str == "Назад-Вперёд") {
       BootKeyboard.press(KEY_LEFT_GUI);
       delay(500);
       BootKeyboard.press('r');
@@ -51,19 +51,19 @@ void loop() {
       BootKeyboard.press(KEY_RETURN);
       delay(50);
       BootKeyboard.releaseAll();
-    } else if (str == "Left") {
+    } else if (str == "Влево") {
       Consumer.write(MEDIA_PREVIOUS);
-    } else if (str == "Right") {
+    } else if (str == "Вправо") {
       Consumer.write(MEDIA_NEXT);
-    } else if (str == "Right-Left") {
+    } else if (str == "Вправо-Влево") {
       Consumer.write(MEDIA_VOLUME_UP);
-    } else if (str == "Left-Right") {
+    } else if (str == "Влево-Вправо") {
       Consumer.write(MEDIA_VOLUME_DOWN);
-    } else if (str == "Backward") {
+    } else if (str == "Вверх") {
       System.write(SYSTEM_POWER_DOWN);
-    } else if (str == "Away") {
+    } else if (str == "Уход") {
       System.write(SYSTEM_SLEEP);
-    } else if (str == "Comeback") {
+    } else if (str == "Прмход") {
       System.write(SYSTEM_WAKE_UP);
     } else if (str.startsWith("http")) {
       BootKeyboard.press(KEY_LEFT_GUI);
