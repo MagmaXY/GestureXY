@@ -23,8 +23,8 @@ struct gestureData {
     { "Zz11116666" },
     { "MagmaXY2020" },
   };
-  char local[21] = "GestureXY_Home";
-  char remote[21] = "GestureXY_Controller";
+  char local[32] = "GestureXY_Дом";
+  char remote[32] = "GestureXY_Контроллер";
   char host[32] = "test.mosquitto.org";
   uint16_t port = 1883;
 };
