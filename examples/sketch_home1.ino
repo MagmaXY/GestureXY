@@ -1,87 +1,94 @@
-#include <HID-Project.h>
-#define GT_STREAM_MODE
+#define MQTT_HEADER "GXY:"
+
+#define GT_PRINT_MODE
+#define GT_MICRO_TX
 
 #include <GyverTransfer.h>
-GyverTransfer<3, GT_RX, 5000, 20> rx;
+GyverTransfer<13, GT_TX, 5000> tx;
+
+#include <WiFi.h>
+#include <PubSubClient.h>
+
+WiFiClient espClient;
+PubSubClient mqtt(espClient);
+
+const uint8_t hLen = 4;
+
+struct gestureData {
+  char ssid[2][32] = {
+    { "53" },
+    { "Dima" },
+  };
+  char pass[2][32] = {
+    { "Zz11116666" },
+    { "MagmaXY2020" },
+  };
+  char local[32] = "GXY_Дом";
+  char remote[32] = "GXY_Контроллер";
+  char host[32] = "test.mosquitto.org";
+  uint16_t port = 1883;
+};
+
+gestureData gData;
 
 void setup() {
   Serial.begin(115200);
   Serial.setTimeout(50);
-  attachInterrupt(digitalPinToInterrupt(3), isr, CHANGE);
-  rx.setTimeout(50);
-  Consumer.begin();
-  BootKeyboard.begin();
-  System.begin();
-  BootKeyboard.press(KEY_LEFT_GUI);
-  delay(500);
-  BootKeyboard.press('r');
-  delay(100);
-  BootKeyboard.releaseAll();
-  BootKeyboard.print("https://github.com/MagmaXY/GestureXY/");
-  BootKeyboard.press(KEY_RETURN);
-  delay(50);
-  BootKeyboard.releaseAll();
-}
-String str = "";
-
-void isr() {
-  rx.tickISR();
+  WiFi.begin(gData.ssid[0], gData.pass[0]);
+  bool flag = false;
+  uint32_t timer = 0;
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+    if (!flag) {
+      timer += 500;
+    }
+    if (timer > 15000 and !flag) {
+      flag = true;
+      WiFi.disconnect();
+      WiFi.begin(gData.ssid[1], gData.pass[1]);
+    }
+  }
+  Serial.println("Подключился");
+  mqtt.setServer(gData.host, gData.port);
+  mqtt.setCallback(callback);
 }
 
 void loop() {
-  if (str != "") {
-    Serial.println(str);
-    if (str == "Вперёд") {
-      Consumer.write(MEDIA_PAUSE);
-    } else if (str == "Назад") {
-      Consumer.write(MEDIA_VOLUME_MUTE);
-    } else if (str == "Вперёд") {
-      Consumer.write(MEDIA_PAUSE);
-    } else if (str == "Вперёд-Назад") {
-      BootKeyboard.press(KEY_BACKSPACE);
-      delay(200);
-      BootKeyboard.releaseAll();
-    } else if (str == "Назад-Вперёд") {
-      BootKeyboard.press(KEY_LEFT_GUI);
-      delay(500);
-      BootKeyboard.press('r');
-      delay(100);
-      BootKeyboard.releaseAll();
-      BootKeyboard.print("https://github.com/MagmaXY/GestureXY/");
-      BootKeyboard.press(KEY_RETURN);
-      delay(50);
-      BootKeyboard.releaseAll();
-    } else if (str == "Влево") {
-      Consumer.write(MEDIA_PREVIOUS);
-    } else if (str == "Вправо") {
-      Consumer.write(MEDIA_NEXT);
-    } else if (str == "Вправо-Влево") {
-      Consumer.write(MEDIA_VOLUME_UP);
-    } else if (str == "Влево-Вправо") {
-      Consumer.write(MEDIA_VOLUME_DOWN);
-    } else if (str == "Вверх") {
-      System.write(SYSTEM_POWER_DOWN);
-    } else if (str == "Уход") {
-      System.write(SYSTEM_SLEEP);
-    } else if (str == "Прмход") {
-      System.write(SYSTEM_WAKE_UP);
-    } else if (str.startsWith("http")) {
-      BootKeyboard.press(KEY_LEFT_GUI);
-      delay(500);
-      BootKeyboard.press('r');
-      delay(100);
-      BootKeyboard.releaseAll();
-      BootKeyboard.print(str);
-      BootKeyboard.press(KEY_RETURN);
-      delay(50);
-      BootKeyboard.releaseAll();
-    }
-    str = "";
-  }
-  if (rx.available()) {
-    str = rx.readString();
-  }
+  mqttTick();
   if (Serial.available()) {
-    str = Serial.readString();
+    String data = Serial.readString();
+    Serial.println(data);
+    tx.print(data);
   }
+}
+
+void mqttTick() {
+  if (WiFi.status() != WL_CONNECTED) return;
+  if (!mqtt.connected()) connectMQTT();
+  mqtt.loop();
+}
+
+void connectMQTT() {
+  String id("GestureXY-");
+  id += String(random(0xffffff), HEX);
+  if (mqtt.connect(id.c_str())) mqtt.subscribe(gData.local);
+  delay(1000);
+}
+
+void callback(char* topic, byte* payload, uint16_t len) {
+  payload[len] = '\0';
+  String str = (char*)payload;
+  if (!str.startsWith(MQTT_HEADER)) return;
+  Serial.println(str);
+  String readData = str.substring(hLen);
+  Serial.println(readData);
+  tx.print(readData);
+  sendPacket("Confirm");
+}
+
+void sendPacket(String msg) {
+  String s = MQTT_HEADER;
+  s += msg;
+  mqtt.publish(gData.remote, s.c_str());
 }
