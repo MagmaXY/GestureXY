@@ -65,7 +65,7 @@ void loop() {
       System.write(SYSTEM_SLEEP);
     } else if (str == "Приход") {
       System.write(SYSTEM_WAKE_UP);
-    } else if (str.startsWith("http")) {
+    } else if (str.startsWith("http") or str.startsWith("C:")) {
       BootKeyboard.press(KEY_LEFT_GUI);
       delay(500);
       BootKeyboard.press('r');
