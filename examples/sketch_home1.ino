@@ -63,7 +63,7 @@ void loop() {
       System.write(SYSTEM_POWER_DOWN);
     } else if (str == "Уход") {
       System.write(SYSTEM_SLEEP);
-    } else if (str == "Прмход") {
+    } else if (str == "Приход") {
       System.write(SYSTEM_WAKE_UP);
     } else if (str.startsWith("http")) {
       BootKeyboard.press(KEY_LEFT_GUI);
