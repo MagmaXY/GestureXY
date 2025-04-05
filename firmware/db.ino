@@ -101,6 +101,7 @@ void build(sets::Builder& b) {
     if (b.Button("reset"_h, "🗑 Сбросить данные")) {
       db.reset();
       db_init();
+      sett.reload(true);
     }
     if (b.Button("setup"_h, "🔂 Перезагрузить")) {
       ESP.restart();
