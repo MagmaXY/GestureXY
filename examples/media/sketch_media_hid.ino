@@ -69,6 +69,9 @@ void setup() {
     }
   }
   Serial.println("Подключился");
+  sett.begin();
+  sett.config.theme = sets::Colors::Green;
+  sett.onBuild(build);
   mqtt.setServer(db[kk::host].c_str(), db[kk::port]);
   mqtt.setCallback(callback);
   connectMQTT();
