@@ -19,7 +19,7 @@ void callback(char* topic, byte* payload, uint16_t len) {
   String str = (char*)payload;
   if (!str.startsWith(db[kk::header])) return;
   Serial.println(str);
-  String data = str.substring(hLen);
+  String data = str.substring(db[kk::header].length());
   Serial.println(data);
   if (data == db[kk::pauseGest]) {
     tx.print("MEDIA_PAUSE");
