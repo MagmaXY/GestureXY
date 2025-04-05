@@ -29,16 +29,6 @@ void loop() {
       BootKeyboard.press(KEY_BACKSPACE);
       delay(200);
       BootKeyboard.releaseAll();
-    } else if (str == "https://github.com/MagmaXY/GestureXY/") {
-      BootKeyboard.press(KEY_LEFT_GUI);
-      delay(500);
-      BootKeyboard.press('r');
-      delay(100);
-      BootKeyboard.releaseAll();
-      BootKeyboard.print("https://github.com/MagmaXY/GestureXY/");
-      BootKeyboard.press(KEY_RETURN);
-      delay(50);
-      BootKeyboard.releaseAll();
     } else if (str == "MEDIA_PREVIOUS") {
       Consumer.write(MEDIA_PREVIOUS);
     } else if (str == "MEDIA_NEXT") {
@@ -53,7 +43,7 @@ void loop() {
       System.write(SYSTEM_SLEEP);
     } else if (str == "SYSTEM_WAKE_UP") {
       System.write(SYSTEM_WAKE_UP);
-    } else if (str.startsWith("http") or str.startsWith("C:")) {
+    } else if (str.startsWith("http") or str.startsWith("C:") or str[0].isDigit()) {
       BootKeyboard.press(KEY_LEFT_GUI);
       delay(500);
       BootKeyboard.press('r');
