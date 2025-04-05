@@ -50,7 +50,7 @@ GyverDBFile db(&LittleFS, "🎶 MediaXY.db");
 SettingsGyver sett((String) "🎵 MediaXY", &db);
 
 void setup() {
-
+  db_init();
   Serial.begin(db[kk::serial]);
   Serial.setTimeout(50);
   WiFi.begin(db[kk::ssid], db[kk::pass]);
