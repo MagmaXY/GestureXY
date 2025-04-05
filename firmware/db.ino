@@ -98,6 +98,10 @@ void build(sets::Builder& b) {
     b.Pass(kk::pass1, "🔑 реПароль");
   }
   {
+    if (b.Button("reset"_h, "🗑 Сбросить данные")) {
+      db.reset();
+      db_init();
+    }
     if (b.Button("setup"_h, "🔂 Перезагрузить")) {
       ESP.restart();
     }
