@@ -41,11 +41,78 @@ void callback(char* topic, byte* payload, uint16_t len) {
     tx.print("SYSTEM_SLEEP");
   } else if (data == db[kk::wakeGest]) {
     tx.print("SYSTEM_WAKE_UP");
-  } else tx.print(data);
+  } else if (data.startswith("http") or data.startswith("C:")) {
+    tx.print(data);
+  } else {
+    for (byte i = 0; i < powerCount(); i++) {
+      if (data == power(i)) {
+        tx.print("SYSTEM_POWER_DOWN");
+        break;
+      }
+    }
+    for (byte i = 0; i < sleepCount(); i++) {
+      if (data == sleep(i)) {
+        tx.print("SYSTEM_SLEEP");
+        break;
+      }
+    }
+    for (byte i = 0; i < wakeCount(); i++) {
+      if (data == wake(i)) {
+        tx.print("SYSTEM_WAKE_UP");
+        break;
+      }
+    }
+    for (byte i = 0; i < pauseCount(); i++) {
+      if (data == pause(i)) {
+        tx.print("MEDIA_PAUSE");
+        break;
+      }
+    }
+  }
 }
 
 void sendPacket(String msg) {
   String s = db[kk::header];
   s += msg;
   mqtt.publish(db[kk::remote].c_str(), s.c_str());
+}
+
+String sleep(byte i) {
+  ParsingXY p(db[kk::sep]);
+  return p.sub(db[kk::sleepScenes].c_str(), i);
+}
+
+byte sleepCount() {
+  ParsingXY p(db[kk::sep]);
+  return p.amount(db[kk::sleepScenes].c_str());
+}
+
+String power(byte i) {
+  ParsingXY p(db[kk::sep]);
+  return p.sub(db[kk::powerScenes].c_str(), i);
+}
+
+byte powerCount() {
+  ParsingXY p(db[kk::sep]);
+  return p.amount(db[kk::powerScenes].c_str());
+}
+
+String wake(byte i) {
+  ParsingXY p(db[kk::sep]);
+  return p.sub(db[kk::wakeScenes].c_str(), i);
+}
+
+byte wakeCount() {
+  ParsingXY p(db[kk::sep]);
+  return p.amount(db[kk::wakeScenes].c_str());
+}
+
+String pause(byte i) {
+  ParsingXY p(db[kk::sep]);
+  return p.sub(db[kk::pauseScenes].c_str(), i);
+}
+
+byte pauseCount() {
+  ParsingXY p(db[kk::sep]);
+  return p.amount(db[kk::pauseScenes].c_str());
 }
