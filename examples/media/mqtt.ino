@@ -21,34 +21,34 @@ void callback(char* topic, byte* payload, uint16_t len) {
   Serial.println(str);
   String data = str.substring(db[kk::header].length());
   Serial.println(data);
-  if (data == db[kk::pauseGest]) {
+  if (data == g.getGest(db[kk::pauseGest])) {
     tx.print(" ");
     tx.print("MEDIA_PAUSE");
-  } else if (data == db[kk::muteGest]) {
+  } else if (data == g.getGest(db[kk::muteGest])) {
     tx.print(" ");
     tx.print("MEDIA_VOLUME_MUTE");
-  } else if (data == db[kk::backspaceGest]) {
+  } else if (data == g.getGest(db[kk::backspaceGest])) {
     tx.print(" ");
     tx.print("KEY_BACKSPACE");
-  } else if (data == db[kk::nextGest]) {
+  } else if (data == g.getGest(db[kk::nextGest])) {
     tx.print(" ");
     tx.print("MEDIA_NEXT");
-  } else if (data == db[kk::previousGest]) {
+  } else if (data == g.getGest(db[kk::previousGest])) {
     tx.print(" ");
     tx.print("MEDIA_PREVIOUS");
-  } else if (data == db[kk::upGest]) {
+  } else if (data == g.getGest(db[kk::upGest])) {
     tx.print(" ");
     tx.print("MEDIA_VOLUME_UP");
-  } else if (data == db[kk::downGest]) {
+  } else if (data == g.getGest(db[kk::downGest])) {
     tx.print(" ");
     tx.print("MEDIA_VOLUME_DOWN");
-  } else if (data == db[kk::powerGest]) {
+  } else if (data == g.getGest(db[kk::powerGest])) {
     tx.print(" ");
     tx.print("SYSTEM_POWER_DOWN");
-  } else if (data == db[kk::sleepGest]) {
+  } else if (data == g.getGest(db[kk::sleepGest])) {
     tx.print(" ");
     tx.print("SYSTEM_SLEEP");
-  } else if (data == db[kk::wakeGest]) {
+  } else if (data == g.getGest(db[kk::wakeGest])) {
     tx.print(" ");
     tx.print("SYSTEM_WAKE_UP");
   } else if (data.startsWith("http") or data.startsWith("C:")) {
@@ -56,28 +56,28 @@ void callback(char* topic, byte* payload, uint16_t len) {
     tx.print(data);
   } else {
     for (byte i = 0; i < powerCount(); i++) {
-      if (data == power(i)) {
+      if (data == g.getGest(power(i)) {
         tx.print(" ");
         tx.print("SYSTEM_POWER_DOWN");
         break;
       }
     }
     for (byte i = 0; i < sleepCount(); i++) {
-      if (data == sleep(i)) {
+      if (data == g.getGest(sleep(i)) {
         tx.print(" ");
         tx.print("SYSTEM_SLEEP");
         break;
       }
     }
     for (byte i = 0; i < wakeCount(); i++) {
-      if (data == wake(i)) {
+      if (data == g.getGest(wake(i)) {
         tx.print(" ");
         tx.print("SYSTEM_WAKE_UP");
         break;
       }
     }
     for (byte i = 0; i < pauseCount(); i++) {
-      if (data == pause(i)) {
+      if (data == g.getGest(pause(i)) {
         tx.print(" ");
         tx.print("MEDIA_PAUSE");
         break;
