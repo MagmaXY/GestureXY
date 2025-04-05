@@ -82,5 +82,5 @@ void setup() {
 
 void loop() {
   mqttTick();
-  settTick();
+  sett.tick();
 }
