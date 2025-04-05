@@ -11,7 +11,7 @@ void setup() {
   Consumer.begin();
   BootKeyboard.begin();
   System.begin();
-  winR("https//github.com/MagmaXY/GestureXY/");
+  winR("https://github.com/MagmaXY/GestureXY/");
 }
 
 void isr() {
