@@ -49,9 +49,11 @@ void setup() {
       WiFi.begin(gData.ssid[1], gData.pass[1]);
     }
   }
-  Serial.println("Connected");
+  Serial.println("Подключился");
   mqtt.setServer(gData.host, gData.port);
   mqtt.setCallback(callback);
+  connectMQTT();
+  tx.print("https://github.com/MagmaXY/GestureXY/");
 }
 
 void loop() {
