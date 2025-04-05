@@ -72,10 +72,12 @@ void setup() {
   mqtt.setServer(db[kk::host].c_str(), db[kk::port]);
   mqtt.setCallback(callback);
   connectMQTT();
+  Serial.println(WiFi.localIP());
   delay(20000);
   tx.print(WiFi.localIP());
 }
 
 void loop() {
   mqttTick();
+  settTick();
 }
