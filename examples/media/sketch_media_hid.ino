@@ -77,7 +77,7 @@ void setup() {
   connectMQTT();
   Serial.println(WiFi.localIP());
   tx.print(" http://");
-  tx.println(WiFi.localIP());
+  tx.print(WiFi.localIP());
 }
 
 void loop() {
