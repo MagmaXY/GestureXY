@@ -10,7 +10,7 @@ void db_init() {
   db.init(kk::host, "test.mosquitto.org");
   db.init(kk::port, 1883);
   db.init(kk::header, "GXY:");
-  db.init(kk::names, "GXY_Контроллер,GXY_Дом,GXY_Лампа");
+  db.init(kk::names, "GXY_Контроллер,GXY_Медиа,GXY_Лампа");
   db.init(kk::scenes, "Нет,Утро,Уход,Приход,Кино,Сон");
   db.init(kk::sep, ',');
   db.init(kk::serial, 115200);
