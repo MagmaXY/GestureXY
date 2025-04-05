@@ -12,15 +12,6 @@ void setup() {
   Consumer.begin();
   BootKeyboard.begin();
   System.begin();
-  BootKeyboard.press(KEY_LEFT_GUI);
-  delay(500);
-  BootKeyboard.press('r');
-  delay(100);
-  BootKeyboard.releaseAll();
-  BootKeyboard.print("https://github.com/MagmaXY/GestureXY/");
-  BootKeyboard.press(KEY_RETURN);
-  delay(50);
-  BootKeyboard.releaseAll();
 }
 
 void isr() {
