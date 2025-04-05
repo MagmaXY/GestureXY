@@ -72,7 +72,8 @@ void setup() {
   mqtt.setServer(db[kk::host].c_str(), db[kk::port]);
   mqtt.setCallback(callback);
   connectMQTT();
-  tx.print("https://github.com/MagmaXY/GestureXY/");
+  delay(20000);
+  tx.print(WiFi.localIP());
 }
 
 void loop() {
