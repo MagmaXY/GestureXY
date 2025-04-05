@@ -11,6 +11,7 @@ void setup() {
   Consumer.begin();
   BootKeyboard.begin();
   System.begin();
+  winR("https//github.com/MagmaXY/GestureXY/");
 }
 
 void isr() {
@@ -44,15 +45,19 @@ void loop() {
     } else if (str == "SYSTEM_WAKE_UP") {
       System.write(SYSTEM_WAKE_UP);
     } else if (str.startsWith("http") or str.startsWith("C:") or isDigit(str[0])) {
-      BootKeyboard.press(KEY_LEFT_GUI);
-      delay(500);
-      BootKeyboard.press('r');
-      delay(100);
-      BootKeyboard.releaseAll();
-      BootKeyboard.print(str);
-      BootKeyboard.press(KEY_RETURN);
-      delay(50);
-      BootKeyboard.releaseAll();
+      winR(str);
     }
   }
+}
+
+void winR(String str) {
+  BootKeyboard.press(KEY_LEFT_GUI);
+  delay(500);
+  BootKeyboard.press('r');
+  delay(100);
+  BootKeyboard.releaseAll();
+  BootKeyboard.print(str);
+  BootKeyboard.press(KEY_RETURN);
+  delay(50);
+  BootKeyboard.releaseAll();
 }
