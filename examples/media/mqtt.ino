@@ -22,49 +22,49 @@ void callback(char* topic, byte* payload, uint16_t len) {
   String data = str.substring(db[kk::header].length());
   Serial.println(data);
   if (data == db[kk::pauseGest]) {
-    tx.print("MEDIA_PAUSE");
+    tx.println("MEDIA_PAUSE");
   } else if (data == db[kk::muteGest]) {
-    tx.print("MEDIA_VOLUME_MUTE");
+    tx.println("MEDIA_VOLUME_MUTE");
   } else if (data == db[kk::backspaceGest]) {
-    tx.print("KEY_BACKSPACE");
+    tx.println("KEY_BACKSPACE");
   } else if (data == db[kk::nextGest]) {
-    tx.print("MEDIA_NEXT");
+    tx.println("MEDIA_NEXT");
   } else if (data == db[kk::previousGest]) {
-    tx.print("MEDIA_PREVIOUS");
+    tx.println("MEDIA_PREVIOUS");
   } else if (data == db[kk::upGest]) {
-    tx.print("MEDIA_VOLUME_UP");
+    tx.println("MEDIA_VOLUME_UP");
   } else if (data == db[kk::downGest]) {
-    tx.print("MEDIA_VOLUME_DOWN");
+    tx.println("MEDIA_VOLUME_DOWN");
   } else if (data == db[kk::powerGest]) {
-    tx.print("SYSTEM_POWER_DOWN");
+    tx.println("SYSTEM_POWER_DOWN");
   } else if (data == db[kk::sleepGest]) {
-    tx.print("SYSTEM_SLEEP");
+    tx.println("SYSTEM_SLEEP");
   } else if (data == db[kk::wakeGest]) {
-    tx.print("SYSTEM_WAKE_UP");
+    tx.println("SYSTEM_WAKE_UP");
   } else if (data.startsWith("http") or data.startsWith("C:")) {
-    tx.print(data);
+    tx.println(data);
   } else {
     for (byte i = 0; i < powerCount(); i++) {
       if (data == power(i)) {
-        tx.print("SYSTEM_POWER_DOWN");
+        tx.println("SYSTEM_POWER_DOWN");
         break;
       }
     }
     for (byte i = 0; i < sleepCount(); i++) {
       if (data == sleep(i)) {
-        tx.print("SYSTEM_SLEEP");
+        tx.println("SYSTEM_SLEEP");
         break;
       }
     }
     for (byte i = 0; i < wakeCount(); i++) {
       if (data == wake(i)) {
-        tx.print("SYSTEM_WAKE_UP");
+        tx.println("SYSTEM_WAKE_UP");
         break;
       }
     }
     for (byte i = 0; i < pauseCount(); i++) {
       if (data == pause(i)) {
-        tx.print("MEDIA_PAUSE");
+        tx.println("MEDIA_PAUSE");
         break;
       }
     }
