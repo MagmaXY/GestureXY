@@ -41,7 +41,7 @@ void callback(char* topic, byte* payload, uint16_t len) {
     tx.print("SYSTEM_SLEEP");
   } else if (data == db[kk::wakeGest]) {
     tx.print("SYSTEM_WAKE_UP");
-  } else if (data.startswith("http") or data.startswith("C:")) {
+  } else if (data.startsWith("http") or data.startsWith("C:")) {
     tx.print(data);
   } else {
     for (byte i = 0; i < powerCount(); i++) {
