@@ -22,48 +22,63 @@ void callback(char* topic, byte* payload, uint16_t len) {
   String data = str.substring(db[kk::header].length());
   Serial.println(data);
   if (data == db[kk::pauseGest]) {
+    tx.print(" ");
     tx.println("MEDIA_PAUSE");
   } else if (data == db[kk::muteGest]) {
+    tx.print(" ");
     tx.println("MEDIA_VOLUME_MUTE");
   } else if (data == db[kk::backspaceGest]) {
+    tx.print(" ");
     tx.println("KEY_BACKSPACE");
   } else if (data == db[kk::nextGest]) {
+    tx.print(" ");
     tx.println("MEDIA_NEXT");
   } else if (data == db[kk::previousGest]) {
+    tx.print(" ");
     tx.println("MEDIA_PREVIOUS");
   } else if (data == db[kk::upGest]) {
+    tx.print(" ");
     tx.println("MEDIA_VOLUME_UP");
   } else if (data == db[kk::downGest]) {
+    tx.print(" ");
     tx.println("MEDIA_VOLUME_DOWN");
   } else if (data == db[kk::powerGest]) {
+    tx.print(" ");
     tx.println("SYSTEM_POWER_DOWN");
   } else if (data == db[kk::sleepGest]) {
+    tx.print(" ");
     tx.println("SYSTEM_SLEEP");
   } else if (data == db[kk::wakeGest]) {
+    tx.print(" ");
     tx.println("SYSTEM_WAKE_UP");
   } else if (data.startsWith("http") or data.startsWith("C:")) {
+    tx.print(" ");
     tx.println(data);
   } else {
     for (byte i = 0; i < powerCount(); i++) {
       if (data == power(i)) {
+        tx.print(" ");
         tx.println("SYSTEM_POWER_DOWN");
         break;
       }
     }
     for (byte i = 0; i < sleepCount(); i++) {
       if (data == sleep(i)) {
+        tx.print(" ");
         tx.println("SYSTEM_SLEEP");
         break;
       }
     }
     for (byte i = 0; i < wakeCount(); i++) {
       if (data == wake(i)) {
+        tx.print(" ");
         tx.println("SYSTEM_WAKE_UP");
         break;
       }
     }
     for (byte i = 0; i < pauseCount(); i++) {
       if (data == pause(i)) {
+        tx.print(" ");
         tx.println("MEDIA_PAUSE");
         break;
       }
