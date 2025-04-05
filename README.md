@@ -33,7 +33,7 @@
 * Автоотключение через заданное время
 * [Веб приложение:](https://github.com/MagmaXY/GestureXY/blob/main/webface.png)
   
-![GestureXY v1.5](https://github.com/MagmaXY/GestureXY/blob/main/GestureXY%20v1.5.png)
+![192 168 0 23_](https://github.com/user-attachments/assets/2e157871-12cc-4d4d-897d-97c05693a649)
 
 ### 🛐 [Зависимости:](https://www.arduino.cc/en/software)
 * [PubSubClient](https://github.com/knolleary/pubsubclient) 
@@ -43,4 +43,3 @@
 * [GyverOLED](https://github.com/GyverLibs/GyverOLED) 
 * [EncButton](https://github.com/GyverLibs/EncButton) 
 * [paj7620](https://github.com/Seeed-Studio/Grove_Gesture) 
-
