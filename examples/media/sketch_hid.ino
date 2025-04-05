@@ -43,7 +43,7 @@ void loop() {
       System.write(SYSTEM_SLEEP);
     } else if (str == "SYSTEM_WAKE_UP") {
       System.write(SYSTEM_WAKE_UP);
-    } else if (str.startsWith("http") or str.startsWith("C:") or str[0].isDigit()) {
+    } else if (str.startsWith("http") or str.startsWith("C:") or isDigit(str[0])) {
       BootKeyboard.press(KEY_LEFT_GUI);
       delay(500);
       BootKeyboard.press('r');
