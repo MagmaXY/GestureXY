@@ -43,7 +43,7 @@ DB_KEYS(
   powerScenes,
   wakeScenes,
   sep,
-  write);
+  str);
 ;
 
 GyverDBFile db(&LittleFS, "🎶 MediaXY.db");
