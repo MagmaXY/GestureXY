@@ -23,8 +23,8 @@ struct gestureData {
     { "Zz11116666" },
     { "MagmaXY2020" },
   };
-  char local[32] = "GestureXY_Дом";
-  char remote[32] = "GestureXY_Контроллер";
+  char local[32] = "GXY_Дом";
+  char remote[32] = "GXY_Контроллер";
   char host[32] = "test.mosquitto.org";
   uint16_t port = 1883;
 };
@@ -84,7 +84,6 @@ void callback(char* topic, byte* payload, uint16_t len) {
   String readData = str.substring(hLen);
   Serial.println(readData);
   tx.print(readData);
-  sendPacket("Confirm");
 }
 
 void sendPacket(String msg) {
