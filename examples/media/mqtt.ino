@@ -27,8 +27,6 @@ void callback(char* topic, byte* payload, uint16_t len) {
     tx.print("MEDIA_VOLUME_MUTE");
   } else if (data == db[kk::backspaceGest]) {
     tx.print("KEY_BACKSPACE");
-  } else if (data == db[kk::githubGest]) {
-    tx.print("https://github.com/MagmaXY/GestureXY/");
   } else if (data == db[kk::nextGest]) {
     tx.print("MEDIA_NEXT");
   } else if (data == db[kk::previousGest]) {
