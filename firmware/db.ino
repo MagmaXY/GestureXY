@@ -1,4 +1,3 @@
-
 void db_init() {
   LittleFS.begin();
   db.begin();
@@ -23,6 +22,7 @@ void db_init() {
   db.init(kk::state, false);
   db.init(kk::reaction, 400);
   db.init(kk::quit, 800);
+  db.init(kk::connect, false);
   db.init(kk::stateGest, 2);
   db.init(kk::vibrationGest, 3);
   db.init(kk::plusBrightnessGest, 0);
@@ -84,7 +84,7 @@ void build(sets::Builder& b) {
     sets::Group g(b, "⚙ MQTT");
     b.Input(kk::host, "🖥 Хост");
     b.Number(kk::port, "🔢 Порт");
-    b.LED("☁ Статус", mqtt.connected());
+    b.LED(kk::connect, "☁ Статус", mqtt.connected());
     b.Input(kk::header, "📨 Заголовок");
     b.Input(kk::sep, "✏️ Символ-разделитель");
     b.Input(kk::names, "📜 Устройства");
@@ -116,8 +116,10 @@ void build(sets::Builder& b) {
       case kk::state:
         Serial.println(b.build.value.toInt() ? "Активный" : "Неактивный");
         oled.clear();
-        vibro.on(500);
-        if (b.build.value.toInt()) cursorGraph();
+        if (b.build.value.toInt()) {
+          vibro.on(500);
+          cursorGraph();
+        }
         break;
       case kk::names:
         if (db[kk::state] and gData.scene == 0) cursorGraph();
