@@ -35,6 +35,42 @@ void db_init() {
   db.init(kk::sceneGest, 0);
 }
 
+void db_set() {
+  db.set(kk::ssid, "53");
+  db.set(kk::pass, "Zz11116666");
+  db.set(kk::ssid1, "Dima");
+  db.set(kk::pass1, "MagmaXY2020");
+  db.set(kk::host, "test.mosquitto.org");
+  db.set(kk::port, 1883);
+  db.set(kk::header, "GXY:");
+  db.set(kk::names, "GXY_Контроллер,GXY_Медиа,GXY_Лампа");
+  db.set(kk::scenes, "Нет,Утро,Уход,Приход,Кино,Сон");
+  db.set(kk::sep, ',');
+  db.set(kk::serial, 115200);
+  db.set(kk::searchs, 2000);
+  db.set(kk::ons, 5000);
+  db.set(kk::brightness, 127);
+  db.set(kk::turn, 90);
+  db.set(kk::vibration, true);
+  db.set(kk::power, 255);
+  db.set(kk::state, false);
+  db.set(kk::reaction, 400);
+  db.set(kk::quit, 800);
+  db.set(kk::connect, false);
+  db.set(kk::stateGest, 2);
+  db.set(kk::vibrationGest, 3);
+  db.set(kk::plusBrightnessGest, 0);
+  db.set(kk::plusBrightness, 32);
+  db.set(kk::minusBrightnessGest, 1);
+  db.set(kk::nextNameGest, 6);
+  db.set(kk::previousNameGest, 7);
+  db.set(kk::nextSceneGest, 4);
+  db.set(kk::previousSceneGest, 5);
+  db.set(kk::sceneGest, 0);
+}
+
+
+
 void build(sets::Builder& b) {
   {
     sets::Group g(b, "🤖 Датчик");
@@ -99,9 +135,7 @@ void build(sets::Builder& b) {
   }
   {
     if (b.Button("reset"_h, "🗑 Сбросить данные")) {
-      db.reset();
-      db_init();
-      sett.reload(true);
+      db_set();
     }
     if (b.Button("setup"_h, "🔂 Перезагрузить")) {
       ESP.restart();
