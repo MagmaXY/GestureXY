@@ -34,7 +34,7 @@ void build(sets::Builder& b) {
   {
     sets::Group g(b, "🎵 Медиа");
     b.Input(kk::str, "Сообщение");
-    if (b.Button("str"_h, "📨 Отправить")) {
+    if (b.Button("STR"_h, "📨 Отправить")) {
       tx.print(db[kk::str]);
     }
   }
@@ -44,7 +44,7 @@ void build(sets::Builder& b) {
     b.Select(kk::pauseGest, "⏯ Пауза", gests);
     b.Select(kk::muteGest, "🔇 Звук", gests);
     b.Select(kk::backspaceGest, " Пробел", gests);
-    b.Slider(kk::sleepGest, "😴 Сон", 0, 255, 1);
+    b.Select(kk::sleepGest, "😴 Сон", gests);
     b.Select(kk::previousGest, "🔚 Музыка", gests);
     b.Select(kk::nextGest, "🔜 Музыка", gests);
     b.Select(kk::upGest, "➕ Громкость", gests);
