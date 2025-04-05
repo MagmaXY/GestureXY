@@ -36,7 +36,7 @@ void build(sets::Builder& b) {
     b.Input(kk::str, "Сообщение");
     if (b.Button("STR"_h, "📨 Отправить")) {
       tx.print(" ");
-      tx.println(db[kk::str]);
+      tx.print(db[kk::str]);
     }
   }
   {
