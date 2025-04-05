@@ -27,15 +27,15 @@ void db_init() {
   db.init(kk::powerScenes, "Сон");
   db.init(kk::wakeScenes, "Приход");
   db.init(kk::pauseScenes, "Работа");
-  db.init(kk::write, "");
+  db.init(kk::str, "");
 }
 
 void build(sets::Builder& b) {
   {
     sets::Group g(b, "🎵 Медиа");
-    b.Input(kk::write, "Сообщение");
-    if (b.Button("write"_h, "📨 Отправить")) {
-      tx.print(db[kk::write]);
+    b.Input(kk::str, "Сообщение");
+    if (b.Button("str"_h, "📨 Отправить")) {
+      tx.print(db[kk::str]);
     }
   }
   {
