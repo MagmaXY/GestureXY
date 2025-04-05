@@ -56,28 +56,28 @@ void callback(char* topic, byte* payload, uint16_t len) {
     tx.print(data);
   } else {
     for (byte i = 0; i < powerCount(); i++) {
-      if (data == g.getGest(power(i)) {
+      if (data == power(i) {
         tx.print(" ");
         tx.print("SYSTEM_POWER_DOWN");
         break;
       }
     }
     for (byte i = 0; i < sleepCount(); i++) {
-      if (data == g.getGest(sleep(i)) {
+      if (data == sleep(i) {
         tx.print(" ");
         tx.print("SYSTEM_SLEEP");
         break;
       }
     }
     for (byte i = 0; i < wakeCount(); i++) {
-      if (data == g.getGest(wake(i)) {
+      if (data == wake(i) {
         tx.print(" ");
         tx.print("SYSTEM_WAKE_UP");
         break;
       }
     }
     for (byte i = 0; i < pauseCount(); i++) {
-      if (data == g.getGest(pause(i)) {
+      if (data == pause(i) {
         tx.print(" ");
         tx.print("MEDIA_PAUSE");
         break;
