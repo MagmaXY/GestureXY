@@ -76,7 +76,6 @@ void setup() {
   mqtt.setCallback(callback);
   connectMQTT();
   Serial.println(WiFi.localIP());
-  delay(20000);
   tx.print(WiFi.localIP());
 }
 
