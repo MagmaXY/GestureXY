@@ -98,6 +98,10 @@ void build(sets::Builder& b) {
     b.Pass(kk::pass1, "🔑 реПароль");
   }
   {
+    if (b.Button("zavod"_h, "💾 Сброс до заводских настроек")) {
+      db.clear();
+      ESP.restart();
+    }
     if (b.Button("setup"_h, "🔂 Перезагрузить")) {
       ESP.restart();
     }
