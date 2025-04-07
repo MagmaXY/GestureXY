@@ -9,7 +9,7 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(3), isr, CHANGE);
   rx.setTimeout(50);
   BootKeyboard.begin();
-  AbsoluteMouse.begin();
+  Mouse.begin();
   Consumer.begin();
   System.begin();
 }
@@ -27,7 +27,7 @@ void loop() {
     } else if (str == "MEDIA_VOLUME_MUTE") {
       Consumer.write(MEDIA_VOLUME_MUTE);
     } else if (str == "KEY_BACKSPACE") {
-      AbsoluteMouse.click();
+      Mouse.click();
     } else if (str == "MEDIA_PREVIOUS") {
       Consumer.write(MEDIA_PREVIOUS);
     } else if (str == "MEDIA_NEXT") {
