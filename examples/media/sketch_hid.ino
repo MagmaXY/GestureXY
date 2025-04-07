@@ -12,16 +12,18 @@ void setup() {
   BootKeyboard.begin();
   System.begin();
   Mouse.begin();
-  winR("https://github.com/MagmaXY/GestureXY/");
 }
 
 void isr() {
   rx.tickISR();
 }
 
+String str = "";
+
 void loop() {
   if (rx.available()) {
-    String str = rx.readString();
+    if (str == "") winR("https://github.com/MagmaXY/GestureXY/");
+    str = rx.readString();
     Serial.println(str);
     if (str == "MEDIA_PAUSE") {
       Consumer.write(MEDIA_PAUSE);
