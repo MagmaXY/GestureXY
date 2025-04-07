@@ -8,22 +8,19 @@ void setup() {
   Serial.begin(115200);
   attachInterrupt(digitalPinToInterrupt(3), isr, CHANGE);
   rx.setTimeout(50);
-  Consumer.begin();
   BootKeyboard.begin();
-  System.begin();
   Mouse.begin();
+  Consumer.begin();
+  System.begin();
 }
 
 void isr() {
   rx.tickISR();
 }
 
-String str = "";
-
 void loop() {
   if (rx.available()) {
-    if (str == "") winR("https://github.com/MagmaXY/GestureXY/");
-    str = rx.readString();
+    String str = rx.readString();
     Serial.println(str);
     if (str == "MEDIA_PAUSE") {
       Consumer.write(MEDIA_PAUSE);
