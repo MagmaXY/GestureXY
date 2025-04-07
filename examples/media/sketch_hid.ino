@@ -28,7 +28,7 @@ void loop() {
       Consumer.write(MEDIA_VOLUME_MUTE);
     } else if (str == "KEY_BACKSPACE") {
       BootKeyboard.press(KEY_BACKSPACE);
-      delay(200);
+      delay(100);
       BootKeyboard.releaseAll();
     } else if (str == "MEDIA_PREVIOUS") {
       Consumer.write(MEDIA_PREVIOUS);
