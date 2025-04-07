@@ -11,6 +11,7 @@ void setup() {
   Consumer.begin();
   BootKeyboard.begin();
   System.begin();
+  Mouse.begin();
   winR("https://github.com/MagmaXY/GestureXY/");
 }
 
@@ -27,9 +28,7 @@ void loop() {
     } else if (str == "MEDIA_VOLUME_MUTE") {
       Consumer.write(MEDIA_VOLUME_MUTE);
     } else if (str == "KEY_BACKSPACE") {
-      BootKeyboard.press(KEY_BACKSPACE);
-      delay(100);
-      BootKeyboard.releaseAll();
+      Mouse.click();
     } else if (str == "MEDIA_PREVIOUS") {
       Consumer.write(MEDIA_PREVIOUS);
     } else if (str == "MEDIA_NEXT") {
@@ -44,7 +43,7 @@ void loop() {
       System.write(SYSTEM_SLEEP);
     } else if (str == "SYSTEM_WAKE_UP") {
       System.write(SYSTEM_WAKE_UP);
-    } else if (str.startsWith("http") or str.startsWith("C:") or isDigit(str[0])) {
+    } else if (str.startsWith("http") or str.startsWith("C:")) {
       winR(str);
     }
   }
