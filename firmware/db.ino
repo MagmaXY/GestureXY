@@ -83,7 +83,7 @@ void build(sets::Builder& b) {
     sets::Group g(b, "⚙ MQTT");
     b.Input(kk::host, "🖥 Хост");
     b.Number(kk::port, "🔢 Порт");
-    b.LED(kk::connect, "☁ Статус", mqtt.connected());
+    b.LED("☁ Статус", mqtt.connected());
     b.Input(kk::header, "📨 Заголовок");
     b.Input(kk::sep, "✏️ Символ-разделитель");
     b.Input(kk::names, "📜 Устройства");
