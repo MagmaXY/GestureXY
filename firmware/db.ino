@@ -22,7 +22,6 @@ void db_init() {
   db.init(kk::state, false);
   db.init(kk::reaction, 400);
   db.init(kk::quit, 800);
-  db.init(kk::connect, false);
   db.init(kk::stateGest, 2);
   db.init(kk::vibrationGest, 3);
   db.init(kk::plusBrightnessGest, 0);
