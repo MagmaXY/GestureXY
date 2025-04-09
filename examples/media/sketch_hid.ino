@@ -21,6 +21,7 @@ void isr() {
 void loop() {
   if (rx.available()) {
     String str = rx.readString();
+    str.replace(" ", "");
     Serial.println(str);
     if (str == "MEDIA_PAUSE") {
       Consumer.write(MEDIA_PAUSE);
@@ -42,6 +43,12 @@ void loop() {
       System.write(SYSTEM_SLEEP);
     } else if (str == "SYSTEM_WAKE_UP") {
       System.write(SYSTEM_WAKE_UP);
+    } else if (str == "RUEN") {
+      BootKeyboard.press(KEY_LEFT_GUI);
+      delay(500);
+      BootKeyboard.press(KEY_BACKSPACE);
+      delay(100);
+      BootKeyboard.releaseAll();
     } else if (str.startsWith("http") or str.startsWith("C:")) {
       winR(str);
     }
