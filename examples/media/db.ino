@@ -38,6 +38,10 @@ void build(sets::Builder& b) {
       tx.print(" ");
       tx.print(db[kk::str]);
     }
+    if (b.Button("RUEN"_h, "📨 Поменять язык")) {
+      tx.print(" ");
+      tx.print("RUEN");
+    }
   }
   {
     sets::Group g(b, "👋 Жесты");
