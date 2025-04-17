@@ -94,6 +94,7 @@ void setup() {
     if (timer > 15) {
       timer = 0;
       if (!flag) {
+        Serial.println("реСеть");
         WiFi.disconnect();
         WiFi.begin(db[kk::ssid1], db[kk::pass1]);
         flag = true;
