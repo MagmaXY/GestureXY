@@ -7,7 +7,7 @@ void db_init() {
   db.init(kk::ssid1, "Dima");
   db.init(kk::pass1, "MagmaXY2020");
   db.init(kk::host, "mqtt.eclipseprojects.io");
-  db.init(kk::port, 1883);
+  db.init(kk::port, 8883);
   db.init(kk::header, "GXY:");
   db.init(kk::names, "GXY_Контроллер,GXY_Медиа,GXY_Лампа");
   db.init(kk::scenes, "Нет,Утро,Уход,Приход,Кино,Сон");
