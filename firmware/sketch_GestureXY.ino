@@ -19,6 +19,7 @@ DB_KEYS(
   pass1,
   host,
   port,
+  connect,
   names,
   scenes,
   sep,
@@ -68,6 +69,8 @@ void setup() {
   g.setReaction(db[kk::reaction]);
   g.setTurn(db[kk::turn]);
   vibro.flag(db[kk::vibration]);
+  db[kk::state] = false;
+  db[kk::connect] = false;
 
   Serial.begin(db[kk::serial]);
   Serial.setTimeout(50);
@@ -78,7 +81,7 @@ void setup() {
   uint8_t error = g.init();
 
   if (error) {
-    Serial.print("Ошибка paj7620:");
+    Serial.print("Ошибка:");
     Serial.println(error);
     oled.print("Ошибка paj7620");
     delay(1000);
@@ -114,6 +117,7 @@ void setup() {
     delay(1000);
   }
   Serial.println("Подключился");
+  Serial.println(WiFi.localIP());
   sett.begin();
   sett.config.theme = sets::Colors::Green;
   sett.onBuild(build);
@@ -122,7 +126,6 @@ void setup() {
   mqtt.setSocketTimeout(1000);
   mqttGraph();
   connectMQTT();
-  Serial.println(WiFi.localIP());
   setupGraph();
   oled.print(WiFi.localIP());
   vibro.setPower(db[kk::power]);
