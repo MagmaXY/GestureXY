@@ -6,7 +6,7 @@ void db_init() {
   db.init(kk::pass, "Zz11116666");
   db.init(kk::ssid1, "Dima");
   db.init(kk::pass1, "MagmaXY2020");
-  db.init(kk::host, "test.mosquitto.org");
+  db.init(kk::host, "mqtt.eclipseprojects.io");
   db.init(kk::port, 1883);
   db.init(kk::header, "GXY:");
   db.init(kk::local, "GXY_Медиа");
