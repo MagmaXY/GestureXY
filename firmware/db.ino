@@ -6,7 +6,7 @@ void db_init() {
   db.init(kk::pass, "Zz11116666");
   db.init(kk::ssid1, "Dima");
   db.init(kk::pass1, "MagmaXY2020");
-  db.init(kk::host, "test.mosquitto.org");
+  db.init(kk::host, "mqtt.eclipseprojects.io");
   db.init(kk::port, 1883);
   db.init(kk::header, "GXY:");
   db.init(kk::names, "GXY_Контроллер,GXY_Медиа,GXY_Лампа");
@@ -22,6 +22,7 @@ void db_init() {
   db.init(kk::state, false);
   db.init(kk::reaction, 400);
   db.init(kk::quit, 800);
+  db.init(kk::connect, false);
   db.init(kk::stateGest, 2);
   db.init(kk::vibrationGest, 3);
   db.init(kk::plusBrightnessGest, 0);
@@ -83,7 +84,7 @@ void build(sets::Builder& b) {
     sets::Group g(b, "⚙ MQTT");
     b.Input(kk::host, "🖥 Хост");
     b.Number(kk::port, "🔢 Порт");
-    b.LED("☁ Статус", mqtt.connected());
+    b.LED(kk::connect, "☁ Статус", mqtt.connected());
     b.Input(kk::header, "📨 Заголовок");
     b.Input(kk::sep, "✏️ Символ-разделитель");
     b.Input(kk::names, "📜 Устройства");
