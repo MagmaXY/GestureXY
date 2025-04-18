@@ -8,10 +8,10 @@ void setup() {
   Serial.begin(115200);
   attachInterrupt(digitalPinToInterrupt(3), isr, CHANGE);
   rx.setTimeout(50);
-  BootKeyboard.begin();
-  Mouse.begin();
   Consumer.begin();
+  BootKeyboard.begin();
   System.begin();
+  winR("https://github.com/MagmaXY/GestureXY/");
 }
 
 void isr() {
@@ -21,14 +21,16 @@ void isr() {
 void loop() {
   if (rx.available()) {
     String str = rx.readString();
-    str.replace(" ", "");
+    str.trim();
     Serial.println(str);
     if (str == "MEDIA_PAUSE") {
       Consumer.write(MEDIA_PAUSE);
     } else if (str == "MEDIA_VOLUME_MUTE") {
       Consumer.write(MEDIA_VOLUME_MUTE);
     } else if (str == "KEY_BACKSPACE") {
-      Mouse.click();
+      BootKeyboard.press(KEY_BACKSPACE);
+      delay(200);
+      BootKeyboard.releaseAll();
     } else if (str == "MEDIA_PREVIOUS") {
       Consumer.write(MEDIA_PREVIOUS);
     } else if (str == "MEDIA_NEXT") {
@@ -43,13 +45,7 @@ void loop() {
       System.write(SYSTEM_SLEEP);
     } else if (str == "SYSTEM_WAKE_UP") {
       System.write(SYSTEM_WAKE_UP);
-    } else if (str == "RUEN") {
-      BootKeyboard.press(KEY_LEFT_GUI);
-      delay(500);
-      BootKeyboard.press(KEY_BACKSPACE);
-      delay(100);
-      BootKeyboard.releaseAll();
-    } else if (str.startsWith("http") or str.startsWith("C:")) {
+    } else if (str.startsWith("http") or str.startsWith("C:") or isDigit(str[0])) {
       winR(str);
     }
   }
