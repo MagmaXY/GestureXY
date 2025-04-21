@@ -278,7 +278,6 @@ void setup() {
   while (WiFi.status() != WL_CONNECTED) {
     if (btn.read()) timer = 15000;
     delay(500);
-    if (run.fullTextFlag) run.loadingFlag = true;
     run.fill(leds, runningText);
     Serial.print(".");
     timer += 500;
