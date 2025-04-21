@@ -281,7 +281,7 @@ void setup() {
     run.fill(leds, runningText);
     if (run.fullTextFlag) run.loadingFlag = 1;
     Serial.print(".");
-    timer += 15000 / 500;
+    timer += 500;
     if (timer > 15000) {
       timer = 0;
       if (!flag) {
