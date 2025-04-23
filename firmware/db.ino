@@ -16,7 +16,7 @@ void db_init() {
   db.init(kk::searchs, 2000);
   db.init(kk::ons, 5000);
   db.init(kk::brightness, 127);
-  db.init(kk::turn, 90);
+  db.init(kk::turn, 180);
   db.init(kk::vibration, true);
   db.init(kk::power, 255);
   db.init(kk::state, false);
