@@ -147,7 +147,7 @@ void loop() {
 void btnTick() {
   btn.tick();
   if (btn.hold()) ESP.restart();
-  if (db[kk::state] and btn.click()) {
+  if (db[kk::state] and btn.hasClick(1)) {
     setupGraph();
     oled.print(WiFi.localIP());
     gData.timer = millis();
