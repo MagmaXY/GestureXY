@@ -704,6 +704,6 @@ void cursorGraph() {
   oled.drawBitmap(121, 0, WiFi.status() == WL_CONNECTED ? wifi_7x7 : no_wifi_7x7, 7, 7, BITMAP_NORMAL, BUF_ADD);
   oled.drawBitmap(121, 8, mqtt.connected() ? mqtt_7x7 : no_mqtt_7x7, 7, 7, BITMAP_NORMAL, BUF_ADD);
   oled.drawBitmap(121, 16, sett.focused() ? focused_7x7 : no_focused_7x7, 7, 7, BITMAP_NORMAL, BUF_ADD);
-  oled.drawBitmap(121, 24, db[kk::vibration] ? vibro_7x7 : no_vibro_7x7, 7, 7, BITMAP_NORMAL, BUF_ADD);
+  oled.drawBitmap(121, 24, db[kk::power] ? vibro_7x7 : no_vibro_7x7, 7, 7, BITMAP_NORMAL, BUF_ADD);
   oled.setCursor(0, 1);
 }
