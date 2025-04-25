@@ -4,7 +4,7 @@ class VibroXY {
 public:
   VibroXY(byte pin) {
     _pin = pin;
-    _flg = true;
+    _flg0 = true;
     _prd1 = 50;
     _pwm = 255;
     pinMode(_pin, OUTPUT);
@@ -19,18 +19,22 @@ public:
   void on(uint32_t prd = 500, byte num = 1) {
     _prd = prd;
     _num = num;
+    _flg = true;
     _flg1 = false;
-    analogWrite(_pin, _pwm);
     _tmr = millis();
+    if (!_flg0) return;
+    analogWrite(_pin, _pwm);
   }
   void off() {
     digitalWrite(_pin, LOW);
+    _flg1 = false;
     _flg1 = false;
     _prd = 0;
     _num = 0;
   }
   void flag(bool flg = true) {
-    _flg = flg;
+    _flg0 = flg;
+    if (!flg) off();
   }
   void tick() {
     if (_flg and _num > 0 and millis() - _tmr >= _prd) {
@@ -56,6 +60,7 @@ private:
   uint32_t _prd1;
   byte _num;
   byte _pwm;
+  bool _flg0;
   bool _flg;
   bool _flg1;
 };
