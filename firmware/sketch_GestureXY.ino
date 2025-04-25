@@ -29,7 +29,6 @@ DB_KEYS(
   serial,
   brightness,
   turn,
-  vibration,
   power,
   state,
   reaction,
