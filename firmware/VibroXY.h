@@ -4,7 +4,6 @@ class VibroXY {
 public:
   VibroXY(byte pin) {
     _pin = pin;
-    _flg0 = true;
     _prd1 = 50;
     _pwm = 255;
     pinMode(_pin, OUTPUT);
@@ -17,8 +16,6 @@ public:
     _pwm = pwm;
   }
   void on(uint32_t prd = 500, byte num = 1) {
-    if (!_flg0) return;
-    Serial.println(_flg0);
     _prd = prd;
     _num = num;
     _flg = true;
@@ -32,10 +29,6 @@ public:
     _flg1 = false;
     _prd = 0;
     _num = 0;
-  }
-  void flag(bool flg = true) {
-    _flg0 = flg;
-    if (!flg) off();
   }
   void tick() {
     if (_flg and _num > 0 and millis() - _tmr >= _prd) {
@@ -61,7 +54,6 @@ private:
   uint32_t _prd1;
   byte _num;
   byte _pwm;
-  bool _flg0;
   bool _flg;
   bool _flg1;
 };
