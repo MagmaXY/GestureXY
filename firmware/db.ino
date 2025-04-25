@@ -17,7 +17,6 @@ void db_init() {
   db.init(kk::ons, 5000);
   db.init(kk::brightness, 127);
   db.init(kk::turn, 180);
-  db.init(kk::vibration, true);
   db.init(kk::power, 255);
   db.init(kk::state, false);
   db.init(kk::reaction, 400);
@@ -51,7 +50,6 @@ void build(sets::Builder& b) {
   }
   {
     sets::Group g(b, "📳 Вибрация");
-    b.Switch(kk::vibration, "🚩 Состояние");
     b.Slider(kk::power, "📲 Сила", 0, 255, 1);
     b.Slider(kk::searchs, "🕑 Поиск", 0, 15000, 500);
     if (b.Button("search"_h, "🔎 Поиск")) {
@@ -132,10 +130,6 @@ void build(sets::Builder& b) {
         if (!b.build.value.startsWith("Нет,"))
           db[kk::scenes] = "Нет," + String(b.build.value);
         if (db[kk::state] and gData.scene != 0) cursorGraph();
-        break;
-      case kk::vibration:
-        if (db[kk::state]) cursorGraph();
-        vibro.flag((bool)b.build.value);
         break;
       case kk::turn:
         g.setTurn(b.build.value);
