@@ -18,6 +18,7 @@ public:
   }
   void on(uint32_t prd = 500, byte num = 1) {
     if (!_flg0) return;
+    Serial.println(_flg0);
     _prd = prd;
     _num = num;
     _flg = true;
