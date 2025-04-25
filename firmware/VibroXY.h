@@ -17,12 +17,12 @@ public:
     _pwm = pwm;
   }
   void on(uint32_t prd = 500, byte num = 1) {
+    if (!_flg0) return;
     _prd = prd;
     _num = num;
     _flg = true;
     _flg1 = false;
     _tmr = millis();
-    if (!_flg0) return;
     analogWrite(_pin, _pwm);
   }
   void off() {
