@@ -67,7 +67,6 @@ void setup() {
   g.setQuit(db[kk::quit]);
   g.setReaction(db[kk::reaction]);
   g.setTurn(db[kk::turn]);
-  vibro.flag(db[kk::vibration]);
   db[kk::state] = false;
   db[kk::connect] = false;
 
