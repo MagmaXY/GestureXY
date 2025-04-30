@@ -1,4 +1,5 @@
-![GestureXY](https://github.com/MagmaXY/GestureXY/blob/main/device.png)
+![GestureXY](https://github.com/user-attachments/assets/4bcce20b-a6a1-4b47-81b2-1e2ae87a48cc)
+
 
 # [🤟 GestureXY](https://drive.google.com/drive/folders/1p2T1dCGA9s0eW435RHl4DeHti2FkGzYV)
 Носимое устройство - контроллер жестами и mqtt запросами на базе ESP8266.
