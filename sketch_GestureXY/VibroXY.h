@@ -6,6 +6,7 @@ public:
     _pin = pin;
     _prd1 = 50;
     _pwm = 255;
+    _flg0 = true;
     pinMode(_pin, OUTPUT);
     off();
   }
@@ -21,7 +22,7 @@ public:
     _flg = true;
     _flg1 = false;
     _tmr = millis();
-    analogWrite(_pin, _pwm);
+    if (_flg0) analogWrite(_pin, _pwm);
   }
   void off() {
     digitalWrite(_pin, LOW);
@@ -29,6 +30,10 @@ public:
     _flg1 = false;
     _prd = 0;
     _num = 0;
+  }
+  void flag(bool flg = true) {
+    _flg0 = flg;
+    if (!flg) digitalWrite(_pin, LOW);
   }
   void tick() {
     if (_flg and _num > 0 and millis() - _tmr >= _prd) {
@@ -42,7 +47,7 @@ public:
     }
     if (_flg1 and millis() - _tmr1 >= _prd1) {
       _flg1 = false;
-      analogWrite(_pin, _pwm);
+      if (_flg0) analogWrite(_pin, _pwm);
       _tmr = millis();
     }
   }
@@ -56,4 +61,5 @@ private:
   byte _pwm;
   bool _flg;
   bool _flg1;
+  bool _flg0;
 };
