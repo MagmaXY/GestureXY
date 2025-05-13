@@ -52,7 +52,7 @@ void build(sets::Builder& b) {
   {
     sets::Group g(b, "📳 Вибрация");
     b.Slider(kk::power, "📲 Сила", 0, 255, 1);
-    b.Switch(kk::flag, "📴 Вибрация")
+    b.Switch(kk::flag, "📴 Вибрация");
     b.Slider(kk::searchs, "🕑 Поиск", 0, 60000, 1);
     if (b.Button("search"_h, "🔎 Поиск")) {
       vibro.on(db[kk::searchs]);
