@@ -18,6 +18,7 @@ void db_init() {
   db.init(kk::brightness, 127);
   db.init(kk::turn, 180);
   db.init(kk::power, 255);
+  db.init(kk::flag, true);
   db.init(kk::state, false);
   db.init(kk::reaction, 400);
   db.init(kk::quit, 800);
@@ -51,6 +52,7 @@ void build(sets::Builder& b) {
   {
     sets::Group g(b, "📳 Вибрация");
     b.Slider(kk::power, "📲 Сила", 0, 255, 1);
+    b.Switch(kk::flag, "📴 Вибрация")
     b.Slider(kk::searchs, "🕑 Поиск", 0, 60000, 1);
     if (b.Button("search"_h, "🔎 Поиск")) {
       vibro.on(db[kk::searchs]);
@@ -141,6 +143,9 @@ void build(sets::Builder& b) {
         break;
       case kk::power:
         vibro.setPower(b.build.value);
+        break;
+      case kk::flag:
+        vibro.setFlag(b.build.value);
         break;
     }
     gData.timer = millis();
