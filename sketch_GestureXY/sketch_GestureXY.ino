@@ -30,6 +30,7 @@ DB_KEYS(
   brightness,
   turn,
   power,
+  flag,
   state,
   reaction,
   quit,
@@ -127,6 +128,7 @@ void setup() {
   setupGraph();
   oled.print(WiFi.localIP());
   vibro.setPower(db[kk::power]);
+  vibro.setFlag(db[kk::flag]);
   vibro.on(1000);
   gData.timer = millis();
 }
