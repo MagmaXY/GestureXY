@@ -145,7 +145,7 @@ void build(sets::Builder& b) {
         vibro.setPower(b.build.value);
         break;
       case kk::flag:
-        vibro.setFlag(b.build.value);
+        vibro.setFlag(b.build.value.toInt());
         break;
     }
     gData.timer = millis();
