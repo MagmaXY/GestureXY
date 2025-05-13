@@ -31,7 +31,7 @@ public:
     _prd = 0;
     _num = 0;
   }
-  void flag(bool flg = true) {
+  void setFlag(bool flg = true) {
     _flg0 = flg;
     if (!flg) digitalWrite(_pin, LOW);
   }
