@@ -1,4 +1,5 @@
-![GestureXY](https://github.com/user-attachments/assets/4bcce20b-a6a1-4b47-81b2-1e2ae87a48cc)
+![GestureXY](https://github.com/user-attachments/assets/d84d4b10-d891-41b4-b21b-2d0cd4f2c3b2)
+
 
 
 # [🤟 GestureXY](https://drive.google.com/file/d/1W6bIEU3vPkZ2RQnV3Fyqns9DYWJWnB7G/view?usp=drive_link)
