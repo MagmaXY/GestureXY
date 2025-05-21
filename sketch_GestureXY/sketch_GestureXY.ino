@@ -125,7 +125,7 @@ void setup() {
   mqtt.setSocketTimeout(1000);
   mqttGraph();
   delay(1000);
-  if (!btn.read()) {
+  if (btn.read()) {
     gData.mqtt = false;
     delay(1000);
   }
