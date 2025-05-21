@@ -128,8 +128,7 @@ void setup() {
   if (btn.read()) {
     gData.mqtt = false;
     delay(1000);
-  }
-  connectMQTT();
+  } else connectMQTT();
   setupGraph();
   oled.print(WiFi.localIP());
   vibro.setPower(db[kk::power]);
