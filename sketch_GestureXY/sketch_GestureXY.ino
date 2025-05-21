@@ -58,6 +58,7 @@ GestureXY g;
 struct gestureXY {
   byte name = 0;
   byte scene = 0;
+  bool mqtt = true;
   uint32_t timer = 0;
 } gData;
 
@@ -124,8 +125,11 @@ void setup() {
   mqtt.setSocketTimeout(1000);
   mqttGraph();
   delay(1000);
-  if (!btn.read()) connectMQTT();
-  else delay(1000);
+  if (!btn.read()) {
+    gData.mqtt = false;
+    delay(1000);
+  }
+  connectMQTT();
   setupGraph();
   oled.print(WiFi.localIP());
   vibro.setPower(db[kk::power]);
