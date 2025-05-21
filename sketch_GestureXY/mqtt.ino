@@ -1,7 +1,7 @@
 #include "ParsingXY.h"
 
 void mqttTick() {
-  if (WiFi.status() != WL_CONNECTED) return;
+  if (!gData.mqtt or WiFi.status() != WL_CONNECTED) return;
   if (!mqtt.connected()) connectMQTT();
   mqtt.loop();
 }
