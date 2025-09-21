@@ -305,8 +305,6 @@ void setup() {
   mqtt.setCallback(callback);
   mqtt.setSocketTimeout(1000);
   connectMQTT();
-  do run.fill(leds, String(WiFi.localIP()));
-  while (!run.fullTextFlag);
 }
 
 void loop() {
