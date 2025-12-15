@@ -26,7 +26,7 @@
 * Штырьки
 * Ремень
 * Болты
-### 📑 [Фунционал:](https://github.com/MagmaXY/GestureXY/tree/main/firmware)
+### 📑 [Фунционал:](https://github.com/MagmaXY/GestureXY/tree/main/sketch_GestureXY)
 * 15 линейно-осевых жестов (инфракрасное распознавание)
 * Настройка яркости дисплея и вибрации
 * Вкл/Выкл управления жестами
