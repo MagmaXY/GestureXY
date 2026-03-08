@@ -1,4 +1,4 @@
-#define VERSION "v1.6"
+#define VERSION "v1.8"
 
 #include "ESP8266WiFi.h"
 #include "PubSubClient.h"
