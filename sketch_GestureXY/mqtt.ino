@@ -1,7 +1,7 @@
 #include "ParsingXY.h"
 
 void mqttTick() {
-  if (!gData.mqtt or WiFi.status() != WL_CONNECTED) return;
+  if (WiFi.status() != WL_CONNECTED) return;
   if (!mqtt.connected()) connectMQTT();
   mqtt.loop();
 }
@@ -32,7 +32,7 @@ void callback(char* topic, byte* payload, uint16_t len) {
 void sendGest() {
   String s;
   s += String(db[kk::header]);
-  s += g.getRUGest();
+  s += g.RUGest;
   mqtt.publish(getName(gData.name).c_str(), s.c_str());
 }
 
