@@ -164,18 +164,12 @@ public:
     }
   }
   String getGest(byte ind) {
-    return gests[ind];
+    return _gests[ind];
   }
   String getRUGest(byte ind) {
-    return gests[ind];
+    return _RUGests[ind];
   }
-  String getRUGest() {
-    for (byte i = 0; i < 15; i++) {
-      if (gest == gests[i]) return RUgests[i];
-    }
-    return "";
-  }
-  String gest;
+  String gest, RUGest;
 private:
   int16_t _turn;
   uint32_t _tmr;
@@ -185,81 +179,7 @@ private:
   bool _flg1;
   uint32_t _quit;
   uint32_t _react;
-
-  String _gest;
-  void _exchange() {
-    if (_gest == "") return;
-    switch (_turn) {
-      case 0:
-        gest = _gest;
-        break;
-      case 90:
-        if (_gest == "Right") {
-          gest = "Up";
-        } else if (_gest == "Left") {
-          gest = "Down";
-        } else if (_gest == "Right-Left") {
-          gest = "Up-Down";
-        } else if (_gest == "Left-Right") {
-          gest = "Down-Up";
-        } else if (_gest == "Up") {
-          gest = "Left";
-        } else if (_gest == "Down") {
-          gest = "Right";
-        } else if (_gest == "Up-Down") {
-          gest = "Left-Right";
-        } else if (_gest == "Down-Up") {
-          gest = "Right-Left";
-        } else {
-          gest = _gest;
-        }
-        break;
-      case 180:
-        if (_gest == "Right") {
-          gest = "Left";
-        } else if (_gest == "Left") {
-          gest = "Right";
-        } else if (_gest == "Right-Left") {
-          gest = "Left-Right";
-        } else if (_gest == "Left-Right") {
-          gest = "Right-Left";
-        } else if (_gest == "Up") {
-          gest = "Down";
-        } else if (_gest == "Down") {
-          gest = "Up";
-        } else if (_gest == "Up-Down") {
-          gest = "Down-Up";
-        } else if (_gest == "Down-Up") {
-          gest = "Up-Down";
-        } else {
-          gest = _gest;
-        }
-        break;
-      case 270:
-        if (_gest == "Right") {
-          gest = "Down";
-        } else if (_gest == "Left") {
-          gest = "Up";
-        } else if (_gest == "Right-Left") {
-          gest = "Down-Up";
-        } else if (_gest == "Left-Right") {
-          gest = "Up-Down";
-        } else if (_gest == "Up") {
-          gest = "Left";
-        } else if (_gest == "Down") {
-          gest = "Right";
-        } else if (_gest == "Up-Down") {
-          gest = "Left-Right";
-        } else if (_gest == "Down-Up") {
-          gest = "Right-Left";
-        } else {
-          gest = _gest;
-        }
-        break;
-    }
-  }
-private:
-  const String gests[15] = {
+  const String _gests[15] = {
     "Up",
     "Down",
     "Up-Down",
@@ -276,7 +196,7 @@ private:
     "Anticlockwise",
     "Wave"
   };
-  const String RUgests[15] = {
+  const String _RUGests[15] = {
     "Вперёд",
     "Назад",
     "Вперёд-Назад",
@@ -293,4 +213,100 @@ private:
     "Против часовой",
     "Волна"
   };
+  String _gest;
+  void _exchange() {
+    if (_gest == "") return;
+    switch (_turn) {
+      case 0:
+        gest = _gest;
+        break;
+      case 90:
+        if (_gest == "Right") {
+          gest = "Up";
+          RUGest = "Вперёд";
+        } else if (_gest == "Left") {
+          gest = "Down";
+          RUGest = "Назад";
+        } else if (_gest == "Right-Left") {
+          gest = "Up-Down";
+          RUGest = "Вперёд-Назад";
+        } else if (_gest == "Left-Right") {
+          gest = "Down-Up";
+          RUGest = "Назад-Вперёд";
+        } else if (_gest == "Up") {
+          gest = "Left";
+          RUGest = "Влево";
+        } else if (_gest == "Down") {
+          gest = "Right";
+          RUGest = "Вправо";
+        } else if (_gest == "Up-Down") {
+          gest = "Left-Right";
+          RUGest = "Влево-Вправо";
+        } else if (_gest == "Down-Up") {
+          gest = "Right-Left";
+          RUGest = "Вправо-Влево";
+        } else {
+          gest = _gest;
+        }
+        break;
+      case 180:
+        if (_gest == "Right") {
+          gest = "Left";
+          RUGest = "Влево";
+        } else if (_gest == "Left") {
+          gest = "Right";
+          RUGest = "Вправо";
+        } else if (_gest == "Right-Left") {
+          gest = "Left-Right";
+          RUGest = "Влево-Вправо";
+        } else if (_gest == "Left-Right") {
+          gest = "Right-Left";
+          RUGest = "Вправо-Влево";
+        } else if (_gest == "Up") {
+          gest = "Down";
+          RUGest = "Назад";
+        } else if (_gest == "Down") {
+          gest = "Up";
+          RUGest = "Вперёд";
+        } else if (_gest == "Up-Down") {
+          gest = "Down-Up";
+          RUGest = "Назад-Вперёд";
+        } else if (_gest == "Down-Up") {
+          gest = "Up-Down";
+          RUGest = "Вперёд-Назад";
+        } else {
+          gest = _gest;
+        }
+        break;
+      case 270:
+        if (_gest == "Right") {
+          gest = "Down";
+          RUGest = "Назад";
+        } else if (_gest == "Left") {
+          gest = "Up";
+          RUGest = "Вперёд";
+        } else if (_gest == "Right-Left") {
+          gest = "Down-Up";
+          RUGest = "Назад-Вперёд";
+        } else if (_gest == "Left-Right") {
+          gest = "Up-Down";
+          RUGest = "Вперёд-Назад";
+        } else if (_gest == "Up") {
+          gest = "Left";
+          RUGest = "Влево";
+        } else if (_gest == "Down") {
+          gest = "Right";
+          RUGest = "Вправо";
+        } else if (_gest == "Up-Down") {
+          gest = "Left-Right";
+          RUGest = "Влево-Вправо";
+        } else if (_gest == "Down-Up") {
+          gest = "Right-Left";
+          RUGest = "Вправо-Влево";
+        } else {
+          gest = _gest;
+        }
+        break;
+    }
+  }
 };
