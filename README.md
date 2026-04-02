@@ -4,12 +4,12 @@
 
 
 # [🤟 GestureXY](https://drive.google.com/file/d/1TbF3a7aHCh9jKlXxH3QMkGqwCdUB_8J_/view?usp=drive_link) 
-Носимое устройство - контроллер жестами и mqtt запросами на базе ESP8266.
+> Носимое устройство - контроллер жестами и mqtt запросами на базе ESP8266.
 
-## 🗒 [Описание проекта](https://github.com/MagmaXY/GestureXY/blob/main/README.md)
-Данный проект позволяет в индивидуальном порядке дистанционно, удобно, быстро и интуитивно управлять жестами устройствами в интеграции с mqtt сервером.
+## 🗒 Описание проекта
+> Данный проект позволяет в индивидуальном порядке дистанционно, удобно, быстро и интуитивно управлять жестами устройствами в интеграции с mqtt сервером.
 
-### 📑 [Комплектующие:](https://github.com/MagmaXY/GestureXY/blob/main/scheme.png)
+### 📑 Комплектующие:
 * ESP8266 Wemos d1 mini
 * OLED SSD1306_128x32
 * paj7620
@@ -17,7 +17,7 @@
 * Модуль заряда Power Bank для Li-ion аккумуляторов (улучшенный TP4056) c преобразователем 5V (MT3608) и выходом USB-A TPC-5V-2A
 * Модульный вибропривод
 * Кнопка
-### 📑 [Корпус:](https://github.com/MagmaXY/GestureXY/tree/main/3d%20%20models)
+### 📑 Корпус:
 * Пластик
 * [Плата](https://oshwlab.com/magmaxy/pcb_smd_gesturexy)
   
@@ -26,7 +26,7 @@
 * Штырьки
 * Ремень
 * Болты
-### 📑 [Фунционал:](https://github.com/MagmaXY/GestureXY/tree/main/sketch_GestureXY)
+### 📑 Фунционал:
 * 15 линейно-осевых жестов (инфракрасное распознавание)
 * Настройка яркости дисплея и вибрации
 * Вкл/Выкл управления жестами
@@ -41,7 +41,7 @@
 
 
 
-### 🛐 [Зависимости:](https://www.arduino.cc/en/software)
+### 🛐 Зависимости:
 * [PubSubClient](https://github.com/knolleary/pubsubclient) 
 * [Settings](https://github.com/GyverLibs/Settings) 
 * [GyverDB](https://github.com/GyverLibs/GyverDB) 
