@@ -12,7 +12,14 @@ void connectMQTT() {
     timer = millis();
     String id("GestureXY-");
     id += String(random(0xffffff), HEX);
-    if (mqtt.connect(id.c_str())) mqtt.subscribe(getName(0).c_str());
+    if (
+      (
+        strlen(db[kk::user].c_str())
+        and mqtt.connect(id.c_str(), db[kk::user].c_str(), db[kk::password].c_str())
+      )
+        or mqtt.connect(id.c_str())
+    ) 
+    mqtt.subscribe(getName(0).c_str());
   }
 }
 

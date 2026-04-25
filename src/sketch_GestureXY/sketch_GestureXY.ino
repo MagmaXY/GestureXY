@@ -19,6 +19,8 @@ DB_KEYS(
   pass1,
   host,
   port,
+  user,
+  password,
   connect,
   names,
   scenes,

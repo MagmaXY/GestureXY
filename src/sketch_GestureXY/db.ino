@@ -8,6 +8,8 @@ void db_init() {
   db.init(kk::pass1, "MagmaXY2020");
   db.init(kk::host, "test.mosquitto.org");
   db.init(kk::port, 1883);
+  db.init(kk::user, "");
+  db.init(kk::password, "");
   db.init(kk::header, "GXY:");
   db.init(kk::names, "GXY_Контроллер,GXY_Медиа,GXY_Лампа");
   db.init(kk::scenes, "Нет,Утро,Уход,Приход,Кино,Сон");
@@ -80,6 +82,8 @@ void build(sets::Builder& b) {
     sets::Group g(b, "⚙ MQTT");
     b.Input(kk::host, "🖥 Хост");
     b.Number(kk::port, "🔢 Порт");
+    b.Input(kk::user, "👤 Пользователь");
+    b.Input(kk::password, "🔑 Пароль");
     b.LED(kk::connect, "☁ Статус", mqtt.connected());
     b.Input(kk::header, "📨 Заголовок");
     b.Input(kk::sep, "✏️ Символ-разделитель");
