@@ -3,7 +3,7 @@
 
 
 
-# [🤟 GestureXY](https://drive.google.com/file/d/1TbF3a7aHCh9jKlXxH3QMkGqwCdUB_8J_/view?usp=drive_link) 
+# [🤟 GestureXY](https://drive.google.com/drive/folders/1p2T1dCGA9s0eW435RHl4DeHti2FkGzYV?usp=sharing) 
 > Носимое устройство - контроллер жестами и mqtt запросами на базе ESP8266.
 
 ## 🗒 Описание проекта
