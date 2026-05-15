@@ -62,7 +62,7 @@ void gestTick() {
       } else if (g.gest == g.getGest(db[kk::vibrationGest])) {
 
         db[kk::flag] = !db[kk::flag];
-        vibro.setPower(db[kk::flag]);
+        vibro.setPower(byte(db[kk::power]) * bool(db[kk::flag]));
         cursorGraph();
       }
     } else {

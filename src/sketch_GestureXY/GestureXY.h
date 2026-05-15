@@ -292,17 +292,17 @@ private:
           gest = "Up-Down";
           RUGest = "Вперёд-Назад";
         } else if (_gest == "Up") {
-          gest = "Left";
-          RUGest = "Влево";
-        } else if (_gest == "Down") {
           gest = "Right";
           RUGest = "Вправо";
+        } else if (_gest == "Down") {
+          gest = "Left";
+          RUGest = "Влево";
         } else if (_gest == "Up-Down") {
-          gest = "Left-Right";
-          RUGest = "Влево-Вправо";
-        } else if (_gest == "Down-Up") {
           gest = "Right-Left";
           RUGest = "Вправо-Влево";
+        } else if (_gest == "Down-Up") {
+          gest = "Left-Right";
+          RUGest = "Влево-Вправо";
         } else {
           gest = _gest;
         }

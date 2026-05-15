@@ -19,7 +19,7 @@ void db_init() {
   db.init(kk::ons, 5000);
   db.init(kk::brightness, 127);
   db.init(kk::turn, 270);
-  db.init(kk::power, 255);
+  db.init(kk::power, 64);
   db.init(kk::flag, true);
   db.init(kk::state, false);
   db.init(kk::reaction, 400);
