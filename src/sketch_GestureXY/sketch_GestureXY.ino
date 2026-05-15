@@ -111,7 +111,7 @@ void setup() {
         oled.print("реСеть");
       } else {
         WiFi.mode(WIFI_AP);
-        WiFi.softAP("GestureXY", "MagmaXY");
+        WiFi.softAP("GestureXY");
         break;
       }
     }
@@ -121,7 +121,7 @@ void setup() {
     delay(1000);
   }
   Serial.println("Подключился");
-  Serial.println(WiFi.localIP());
+  Serial.println(WiFi.getMode() == WIFI_STA ? WiFi.localIP() : WiFi.softAPIP());
   sett.begin();
   sett.config.theme = sets::Colors::Green;
   sett.onBuild(build);
@@ -131,7 +131,7 @@ void setup() {
   mqttGraph();
   connectMQTT();
   setupGraph();
-  oled.print(WiFi.localIP());
+  oled.print(WiFi.getMode() == WIFI_STA ? WiFi.localIP() : WiFi.softAPIP());
   vibro.setPower(db[kk::power]);
   vibro.setFlag(db[kk::flag]);
   vibro.on(1000);
@@ -154,7 +154,7 @@ void btnTick() {
   if (btn.hold()) ESP.restart();
   if (db[kk::state] and btn.hasClicks(1)) {
     setupGraph();
-    oled.print(WiFi.localIP());
+    oled.print(WiFi.getMode() == WIFI_STA ? WiFi.localIP() : WiFi.softAPIP());
     gData.timer = millis();
   }
 }
