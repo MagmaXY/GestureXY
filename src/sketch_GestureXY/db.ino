@@ -6,7 +6,7 @@ void db_init() {
   db.init(kk::pass, "Zz11116666");
   db.init(kk::ssid1, "Dima");
   db.init(kk::pass1, "MagmaXY2020");
-  db.init(kk::host, "test.mosquitto.org");
+  db.init(kk::host, "broker.hivemq.com");
   db.init(kk::port, 1883);
   db.init(kk::user, "");
   db.init(kk::password, "");
@@ -18,7 +18,7 @@ void db_init() {
   db.init(kk::searchs, 2000);
   db.init(kk::ons, 5000);
   db.init(kk::brightness, 127);
-  db.init(kk::turn, 180);
+  db.init(kk::turn, 270);
   db.init(kk::power, 255);
   db.init(kk::flag, true);
   db.init(kk::state, false);

@@ -91,6 +91,7 @@ void setup() {
 
   Serial.println("Сеть");
   oled.print("Сеть");
+  WiFi.mode(WIFI_STA);
   WiFi.begin(db[kk::ssid], db[kk::pass]);
 
   bool flag = false;
@@ -109,7 +110,9 @@ void setup() {
         setupGraph();
         oled.print("реСеть");
       } else {
-        ESP.restart();
+        WiFi.mode(WIFI_AP);
+        WiFi.softAP("GestureXY", "MagmaXY");
+        break;
       }
     }
     Serial.print(".");
